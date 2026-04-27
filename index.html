@@ -1,2 +1,1694 @@
-# medicina-interna-avanzada
-Contenidos de Medicina Interna Avanzada
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Clase 1 — Manejo Inicial del Paciente Crítico y Triage Avanzado | Diplomado Medicina Interna Avanzada AVANTISCORP 2026</title>
+<style>
+:root{
+  --azul-profundo:#0B2545;
+  --azul-medio:#13315C;
+  --azul-acento:#1B4965;
+  --celeste:#5FA8D3;
+  --celeste-claro:#BEE9E8;
+  --rojo-critico:#C1121F;
+  --naranja-alerta:#F77F00;
+  --amarillo:#FCBF49;
+  --verde-estable:#2A9D8F;
+  --gris-claro:#F4F6F8;
+  --gris-medio:#CED4DA;
+  --texto:#1A1A2E;
+  --blanco:#FFFFFF;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{
+  font-family:'Segoe UI','Helvetica Neue',Arial,sans-serif;
+  background:linear-gradient(135deg,#e8eef5 0%,#cfd9e6 100%);
+  color:var(--texto);
+  padding:20px;
+  line-height:1.55;
+}
+.slide{
+  width:1280px;
+  min-height:760px;
+  margin:30px auto;
+  background:var(--blanco);
+  border-radius:14px;
+  box-shadow:0 12px 40px rgba(11,37,69,0.25);
+  padding:50px 60px;
+  position:relative;
+  overflow:hidden;
+  page-break-after:always;
+  border-top:8px solid var(--azul-profundo);
+}
+.slide::before{
+  content:"";
+  position:absolute;
+  top:0;right:0;
+  width:180px;height:60px;
+  background:linear-gradient(135deg,var(--celeste) 0%,var(--azul-medio) 100%);
+  clip-path:polygon(20% 0,100% 0,100% 100%);
+}
+.slide-number{
+  position:absolute;
+  bottom:20px;right:30px;
+  font-size:13px;
+  color:var(--azul-acento);
+  font-weight:600;
+  letter-spacing:1px;
+}
+.slide-footer{
+  position:absolute;
+  bottom:20px;left:30px;
+  font-size:11px;
+  color:#6c757d;
+  font-style:italic;
+}
+h1{
+  color:var(--azul-profundo);
+  font-size:34px;
+  font-weight:800;
+  margin-bottom:8px;
+  border-bottom:4px solid var(--celeste);
+  padding-bottom:12px;
+  line-height:1.2;
+}
+h2{
+  color:var(--azul-medio);
+  font-size:26px;
+  margin-bottom:18px;
+  font-weight:700;
+}
+h3{
+  color:var(--azul-acento);
+  font-size:19px;
+  margin:14px 0 8px 0;
+  font-weight:700;
+}
+p,li{
+  font-size:15.5px;
+  margin-bottom:8px;
+  text-align:justify;
+}
+ul,ol{margin-left:22px;}
+li{margin-bottom:6px;}
+.subtitle{
+  font-size:17px;
+  color:var(--azul-acento);
+  font-style:italic;
+  margin-bottom:20px;
+}
+.cover{
+  background:linear-gradient(135deg,var(--azul-profundo) 0%,var(--azul-acento) 60%,var(--celeste) 130%);
+  color:var(--blanco);
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  border-top:none;
+}
+.cover::before{display:none;}
+.cover h1{
+  color:var(--blanco);
+  font-size:46px;
+  border:none;
+  margin-bottom:20px;
+}
+.cover .subtitle{color:var(--celeste-claro);font-size:22px;}
+.cover .meta{
+  margin-top:40px;
+  padding:20px 40px;
+  background:rgba(255,255,255,0.1);
+  border-left:5px solid var(--amarillo);
+  border-radius:8px;
+  font-size:16px;
+  text-align:left;
+}
+.box{
+  background:var(--gris-claro);
+  border-left:5px solid var(--celeste);
+  padding:14px 18px;
+  margin:10px 0;
+  border-radius:6px;
+}
+.box-critico{
+  background:#fff0f1;
+  border-left:5px solid var(--rojo-critico);
+  padding:14px 18px;
+  margin:10px 0;
+  border-radius:6px;
+}
+.box-alerta{
+  background:#fff8e8;
+  border-left:5px solid var(--naranja-alerta);
+  padding:14px 18px;
+  margin:10px 0;
+  border-radius:6px;
+}
+.box-perla{
+  background:#e8f5f3;
+  border-left:5px solid var(--verde-estable);
+  padding:14px 18px;
+  margin:10px 0;
+  border-radius:6px;
+}
+.box-perla::before{
+  content:"💡 PERLA CLÍNICA — ";
+  font-weight:800;
+  color:var(--verde-estable);
+}
+.box-critico::before{
+  content:"⚠ ALERTA CRÍTICA — ";
+  font-weight:800;
+  color:var(--rojo-critico);
+}
+.box-alerta::before{
+  content:"⚡ PUNTO CLAVE — ";
+  font-weight:800;
+  color:var(--naranja-alerta);
+}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+.three-col{display:grid;grid-template-columns:1fr 1fr 1fr;gap:15px;}
+table{
+  width:100%;
+  border-collapse:collapse;
+  margin:12px 0;
+  font-size:14px;
+}
+th{
+  background:var(--azul-profundo);
+  color:var(--blanco);
+  padding:10px;
+  text-align:left;
+  font-weight:700;
+}
+td{
+  padding:9px 10px;
+  border-bottom:1px solid var(--gris-medio);
+  vertical-align:top;
+}
+tr:nth-child(even){background:var(--gris-claro);}
+.abcde-grid{
+  display:grid;
+  grid-template-columns:80px 1fr;
+  gap:8px;
+  margin:15px 0;
+}
+.letra{
+  background:var(--azul-profundo);
+  color:var(--blanco);
+  font-size:38px;
+  font-weight:900;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:8px;
+}
+.letra.A{background:var(--rojo-critico);}
+.letra.B{background:var(--naranja-alerta);}
+.letra.C{background:var(--amarillo);color:var(--azul-profundo);}
+.letra.D{background:var(--verde-estable);}
+.letra.E{background:var(--celeste);}
+.contenido-letra{
+  background:var(--gris-claro);
+  padding:12px 15px;
+  border-radius:6px;
+}
+.cita{
+  font-size:12.5px;
+  color:#555;
+  font-style:italic;
+  border-top:1px dashed var(--gris-medio);
+  padding-top:8px;
+  margin-top:10px;
+}
+.tag{
+  display:inline-block;
+  background:var(--azul-acento);
+  color:var(--blanco);
+  padding:3px 10px;
+  border-radius:12px;
+  font-size:12px;
+  margin:2px;
+  font-weight:600;
+}
+.tag.rojo{background:var(--rojo-critico);}
+.tag.naranja{background:var(--naranja-alerta);}
+.tag.verde{background:var(--verde-estable);}
+.flow{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin:18px 0;
+  flex-wrap:wrap;
+  gap:8px;
+}
+.flow-step{
+  flex:1;
+  min-width:140px;
+  background:var(--azul-medio);
+  color:var(--blanco);
+  padding:12px;
+  border-radius:8px;
+  text-align:center;
+  font-size:13px;
+  font-weight:600;
+}
+.flow-arrow{font-size:24px;color:var(--azul-acento);font-weight:900;}
+.highlight{
+  background:linear-gradient(120deg,#fcbf49aa 0%,#fcbf4940 100%);
+  padding:2px 6px;
+  border-radius:4px;
+  font-weight:700;
+}
+.evidencia{
+  background:#f0f4f8;
+  border:1px solid var(--celeste);
+  border-radius:8px;
+  padding:12px;
+  margin:10px 0;
+  font-size:13.5px;
+}
+.evidencia-titulo{
+  color:var(--azul-profundo);
+  font-weight:700;
+  font-size:14px;
+  margin-bottom:5px;
+}
+.objetivo{
+  background:linear-gradient(90deg,var(--celeste-claro) 0%,#ffffff 100%);
+  padding:12px 18px;
+  margin:8px 0;
+  border-left:4px solid var(--azul-medio);
+  border-radius:5px;
+  font-size:15px;
+}
+</style>
+</head>
+<body>
+
+<!-- DIAPOSITIVA 1: PORTADA -->
+<div class="slide cover">
+<div style="font-size:14px;letter-spacing:3px;color:var(--amarillo);margin-bottom:15px;">DIPLOMADO EN MEDICINA INTERNA AVANZADA · COHORTE 2026</div>
+<h1>CLASE 1<br>Manejo Inicial del Paciente Crítico<br>y Triage Avanzado</h1>
+<div class="subtitle">ABCDE · Signos de alarma · Priorización · Estabilización inicial · Criterios de ingreso, referencia y escalamiento</div>
+<div class="meta">
+<strong>Docente:</strong> Ph.D. Héctor Ortega C.<br>
+<strong>Institución:</strong> AVANTISCORP Capacitación Integral<br>
+<strong>Fecha:</strong> Martes 05/05/2026 · 20:00 – 22:00 (UTC-5)<br>
+<strong>Duración:</strong> 2 horas académicas · Módulo I — Urgencias y Bases Transversales<br>
+<strong>Audiencia:</strong> Médicos postgradistas y especialistas clínicos
+</div>
+<div class="slide-number">1 / 40</div>
+</div>
+
+<!-- DIAPOSITIVA 2: OBJETIVOS DE APRENDIZAJE -->
+<div class="slide">
+<h1>Objetivos de Aprendizaje</h1>
+<p class="subtitle">Al finalizar la sesión el participante será capaz de:</p>
+<div class="objetivo"><strong>OA1.</strong> Aplicar de forma sistemática y reproducible el abordaje <strong>ABCDE</strong> en el paciente adulto crítico, integrando el principio <em>"trata primero lo que mata primero"</em>.</div>
+<div class="objetivo"><strong>OA2.</strong> Discriminar los <strong>signos de alarma fisiológicos</strong> y aplicar escalas de alerta temprana validadas (NEWS2, qSOFA, MEWS) para detección precoz del deterioro.</div>
+<div class="objetivo"><strong>OA3.</strong> Comparar e implementar sistemas de <strong>triage avanzado</strong> (ESI 5 niveles, Manchester Triage System) con criterios de prioridad basados en evidencia.</div>
+<div class="objetivo"><strong>OA4.</strong> Ejecutar maniobras de <strong>estabilización inicial</strong> centradas en metas hemodinámicas, ventilatorias y neurológicas según las guías Surviving Sepsis Campaign 2026 y AHA 2025.</div>
+<div class="objetivo"><strong>OA5.</strong> Decidir, con base en criterios objetivos, los umbrales de <strong>ingreso a UCI, referencia interhospitalaria y escalamiento</strong> mediante equipos de respuesta rápida (RRT/MET).</div>
+<div class="objetivo"><strong>OA6.</strong> Integrar el <strong>POCUS</strong> (point-of-care ultrasound) como herramienta diagnóstica y de monitoreo en la evaluación inicial del shock indiferenciado.</div>
+<div class="slide-footer">Diplomado Medicina Interna Avanzada — AVANTISCORP 2026</div>
+<div class="slide-number">2 / 40</div>
+</div>
+
+<!-- DIAPOSITIVA 3: DEFINICIÓN DE PACIENTE CRÍTICO -->
+<div class="slide">
+<h1>El Paciente Crítico: Definición Operacional</h1>
+<h2>Un constructo dinámico, no un estado fijo</h2>
+<p>El paciente crítico se define como aquel en quien existe <span class="highlight">disfunción aguda, reversible o potencialmente reversible, de uno o más sistemas orgánicos</span>, cuya resolución requiere monitorización continua e intervenciones de soporte vital de alta intensidad, con riesgo inminente de muerte si no se implementan medidas terapéuticas oportunas.</p>
+
+<div class="box">
+<h3>Tres dimensiones que definen criticidad (Vincent et al., 2025)</h3>
+<ul>
+<li><strong>Inestabilidad fisiológica:</strong> alteración de variables vitales fuera de rangos compensatorios.</li>
+<li><strong>Trayectoria temporal:</strong> velocidad de deterioro y reversibilidad potencial.</li>
+<li><strong>Reserva funcional previa:</strong> comorbilidades, fragilidad y estado basal.</li>
+</ul>
+</div>
+
+<div class="box-alerta">
+La criticidad no es sinónimo de gravedad estática. Un paciente con shock séptico precoz puede tener cifras tensionales "aceptables" pero estar en deterioro silente. La detección temprana depende de <strong>tendencias</strong>, no de cifras aisladas.
+</div>
+
+<div class="evidencia">
+<div class="evidencia-titulo">Evidencia clave</div>
+Marshall JC, et al. <em>What is an intensive care unit? A report of the task force of the World Federation of Societies of Intensive and Critical Care Medicine</em>. J Crit Care. 2017;37:270-276. — Definición de criticidad como "fragilidad fisiológica reversible".
+</div>
+<div class="slide-footer">Clase 1 · Módulo I</div>
+<div class="slide-number">3 / 40</div>
+</div>
+
+<!-- DIAPOSITIVA 4: EPIDEMIOLOGÍA -->
+<div class="slide">
+<h1>Epidemiología y Carga Global</h1>
+<h2>Magnitud del problema en el adulto críticamente enfermo</h2>
+<div class="two-col">
+<div>
+<h3>Cifras globales</h3>
+<ul>
+<li><strong>≈30 millones</strong> de adultos requieren cuidado crítico anualmente a nivel mundial.</li>
+<li>Mortalidad hospitalaria global en UCI: <strong>16-25%</strong> (variable por contexto socioeconómico).</li>
+<li>Sepsis: <strong>48,9 millones</strong> de casos/año, con <strong>11 millones</strong> de muertes (≈20% mortalidad global).</li>
+<li>El <strong>retraso diagnóstico</strong> en urgencias incrementa mortalidad hasta un 7,6% por cada hora de demora en sepsis.</li>
+</ul>
+</div>
+<div>
+<h3>Realidad latinoamericana</h3>
+<ul>
+<li>Mortalidad por sepsis en LATAM: <strong>30-50%</strong>, superior a países de altos ingresos.</li>
+<li>Solo el <strong>33-40%</strong> de pacientes inestables en urgencias reciben evaluación ABCDE estructurada (Olgers et al., 2017).</li>
+<li>Brecha de camas UCI: <strong>1,5-3</strong> camas/100.000 habitantes en Ecuador (vs. ≥10/100.000 países OCDE).</li>
+<li>Triage subóptimo se asocia a <strong>mortalidad 2-3 veces mayor</strong> en pacientes mal categorizados.</li>
+</ul>
+</div>
+</div>
+<div class="evidencia">
+<div class="evidencia-titulo">Referencia</div>
+Rudd KE, et al. <em>Global, regional, and national sepsis incidence and mortality, 1990-2017: analysis for the Global Burden of Disease Study</em>. Lancet. 2020;395(10219):200-211. · Adhikari NKJ, et al. <em>Critical care and the global burden of critical illness in adults</em>. Lancet. 2010;376(9749):1339-46 (actualizaciones 2024).
+</div>
+<div class="slide-footer">Clase 1 · Módulo I</div>
+<div class="slide-number">4 / 40</div>
+</div>
+
+<!-- DIAPOSITIVA 5: CADENA DE SUPERVIVENCIA INTRAHOSPITALARIA -->
+<div class="slide">
+<h1>Cadena de Supervivencia Intrahospitalaria</h1>
+<h2>Del reconocimiento precoz a la estabilización efectiva</h2>
+<div class="flow">
+<div class="flow-step">1. Reconocimiento del deterioro</div>
+<div class="flow-arrow">▶</div>
+<div class="flow-step">2. Activación (RRT/MET)</div>
+<div class="flow-arrow">▶</div>
+<div class="flow-step">3. Evaluación ABCDE</div>
+<div class="flow-arrow">▶</div>
+<div class="flow-step">4. Estabilización dirigida</div>
+<div class="flow-arrow">▶</div>
+<div class="flow-step">5. Disposición (UCI / piso / referencia)</div>
+</div>
+
+<div class="box-alerta">
+El <strong>"failure to rescue"</strong> (fallo en el rescate) es una métrica de calidad institucional crítica: muerte de un paciente con complicaciones que <strong>deberían haber sido detectables y tratables</strong>. Hasta el <strong>50-70%</strong> de los paros cardiorrespiratorios intrahospitalarios son precedidos por signos de deterioro 6-8 horas antes (Hillman et al.; SCCM Guidelines 2024).
+</div>
+
+<h3>Determinantes del éxito</h3>
+<div class="three-col">
+<div class="box"><strong>Sistemas:</strong> EWS automatizados en HCE, RRT 24/7, protocolos institucionales.</div>
+<div class="box"><strong>Equipos:</strong> liderazgo claro, comunicación cerrada (SBAR), tamaño óptimo (5-7 miembros).</div>
+<div class="box"><strong>Individuos:</strong> entrenamiento ABCDE, juicio clínico calibrado, conciencia situacional.</div>
+</div>
+
+<div class="evidencia">
+<div class="evidencia-titulo">Guía clave</div>
+SCCM. <em>Guidelines on Recognizing and Responding to Clinical Deterioration Outside the ICU</em>. Crit Care Med. 2024 — recomendación fuerte para despliegue hospitalario de RRT/MET con criterios explícitos de activación.
+</div>
+<div class="slide-footer">Clase 1 · Módulo I</div>
+<div class="slide-number">5 / 40</div>
+</div>
+
+<!-- DIAPOSITIVA 6: ABCDE - INTRODUCCIÓN -->
+<div class="slide">
+<h1>El Abordaje ABCDE</h1>
+<h2>El lenguaje universal de la medicina de urgencias</h2>
+<p>El abordaje <strong>Airway, Breathing, Circulation, Disability, Exposure</strong> es una estrategia consensuada, basada en prioridad fisiológica, para la evaluación y resucitación inicial del paciente crítico de cualquier edad o etiología. Originalmente desarrollado en el contexto del <em>Advanced Trauma Life Support (ATLS)</em> en 1980, hoy es estándar transversal en medicina interna, urgencias, anestesiología y cuidado crítico.</p>
+
+<div class="box-perla">
+Principio rector: <strong>"Treat first what kills first"</strong>. La secuencia se ejecuta de forma <strong>iterativa</strong>: tras cada intervención se reevalúa desde A. Nunca se avanza sin haber asegurado el paso previo.
+</div>
+
+<h3>Evidencia de adherencia (scoping review, Bergs et al., 2024 — n=57 estudios)</h3>
+<table>
+<tr><th>Contexto</th><th>Adherencia global</th><th>Factores que la mejoran</th></tr>
+<tr><td>Práctica clínica real</td><td>18% — 84%</td><td>Líder identificado, equipo de 5-7 miembros, checklist cognitivo</td></tr>
+<tr><td>Simulación pre-entrenamiento</td><td>29% — 35%</td><td>—</td></tr>
+<tr><td>Simulación post-entrenamiento</td><td>65% — 97%</td><td>Cursos estructurados, retroalimentación con video</td></tr>
+</table>
+
+<div class="box-critico">
+Solo el <strong>33%</strong> de pacientes inestables en emergencia reciben evaluación ABCDE completa, y apenas el <strong>3%</strong> de los presuntamente estables (Olgers et al., 2017). Esta brecha es el blanco principal de esta clase.
+</div>
+
+<div class="evidencia">
+<div class="evidencia-titulo">Referencia central</div>
+Bergs L, et al. <em>The ABCDE approach in critically ill patients: A scoping review of assessment tools, adherence and reported outcomes</em>. Resuscitation Plus. 2024;19:100754. PMC11437753.
+</div>
+<div class="slide-footer">Clase 1 · Módulo I</div>
+<div class="slide-number">6 / 40</div>
+</div>
+
+<!-- DIAPOSITIVA 7: A - VÍA AÉREA -->
+<div class="slide">
+<h1>A — Airway (Vía Aérea)</h1>
+<h2>Prioridad absoluta: una vía aérea no permeable mata en minutos</h2>
+<div class="abcde-grid">
+<div class="letra A">A</div>
+<div class="contenido-letra">
+<strong>Objetivo:</strong> garantizar permeabilidad y protección con control cervical si hay sospecha de trauma.
+</div>
+</div>
+
+<div class="two-col">
+<div>
+<h3>Evaluación rápida (10-15 segundos)</h3>
+<ul>
+<li><strong>"¿Cómo se siente?"</strong> — paciente que responde con voz clara: vía aérea permeable, ventila y perfunde cerebro.</li>
+<li>Inspección: cuerpos extraños, sangre, vómito, edema, trauma facial, quemadura por inhalación.</li>
+<li>Auscultación: estridor (obstrucción alta), ronquido (lengua/tejidos blandos), gorgoteo (líquidos).</li>
+<li>Movimiento torácico paradójico → obstrucción completa.</li>
+</ul>
+</div>
+<div>
+<h3>Maniobras escalonadas</h3>
+<ol>
+<li><strong>Básicas:</strong> tracción mandibular (jaw-thrust en trauma), elevación del mentón, aspiración.</li>
+<li><strong>Adyuvantes:</strong> cánula orofaríngea (Guedel) si Glasgow ≤8 sin reflejo nauseoso; nasofaríngea si reflejo conservado.</li>
+<li><strong>Definitiva:</strong> intubación orotraqueal (ISR), dispositivos supraglóticos (máscara laríngea), vía quirúrgica (cricotiroidotomía) si "cannot intubate, cannot oxygenate".</li>
+</ol>
+</div>
+</div>
+
+<div class="box-critico">
+Indicaciones absolutas de vía aérea definitiva: apnea, Glasgow ≤8, incapacidad para proteger vía aérea, hipoxemia refractaria, necesidad de hiperventilación controlada, quemadura de vía aérea, shock que no responde.
+</div>
+
+<div class="evidencia">
+<div class="evidencia-titulo">Guía</div>
+Higgs A, et al. <em>Guidelines for the management of tracheal intubation in critically ill adults</em>. Br J Anaesth. 2018;120(2):323-352. — Difficult Airway Society / ICS / FICM / RCoA. Actualización aplicada en SSC 2026.
+</div>
+<div class="slide-footer">Clase 1 · Módulo I</div>
+<div class="slide-number">7 / 40</div>
+</div>
+
+<!-- DIAPOSITIVA 8: B - VENTILACIÓN -->
+<div class="slide">
+<h1>B — Breathing (Ventilación y Oxigenación)</h1>
+<h2>Una vía aérea permeable no garantiza ventilación efectiva</h2>
+<div class="abcde-grid">
+<div class="letra B">B</div>
+<div class="contenido-letra">
+<strong>Objetivo:</strong> asegurar oxigenación adecuada (SpO₂ 94-98% en general; 88-92% en EPOC retenedor) y eliminación de CO₂.
+</div>
+</div>
+
+<h3>Evaluación sistemática (regla de las 4 inspecciones)</h3>
+<table>
+<tr><th>Componente</th><th>Hallazgos críticos</th><th>Acción inmediata</th></tr>
+<tr><td><strong>Inspección</strong></td><td>FR &lt;8 o &gt;30, uso de musculatura accesoria, asimetría, cianosis</td><td>O₂ alto flujo; preparar VNI/IOT</td></tr>
+<tr><td><strong>Palpación</strong></td><td>Enfisema subcutáneo, desviación traqueal</td><td>Sospecha neumotórax a tensión</td></tr>
+<tr><td><strong>Percusión</strong></td><td>Hipersonoridad (NTX), matidez (hemotórax/derrame)</td><td>Toracostomía/drenaje</td></tr>
+<tr><td><strong>Auscultación</strong></td><td>Ausencia unilateral, sibilancias, crepitantes</td><td>Tratamiento etiológico dirigido</td></tr>
+</table>
+
+<div class="box-critico">
+<strong>Neumotórax a tensión</strong> = diagnóstico clínico, NO radiológico. Hipotensión + ingurgitación yugular + ausencia de murmullo vesicular + hipersonoridad → <strong>descompresión inmediata</strong> con aguja en 2º EIC línea medioclavicular o 4º-5º EIC línea axilar anterior (preferida en adultos por menor falla técnica).
+</div>
+
+<h3>Soporte ventilatorio escalonado</h3>
+<div class="flow">
+<div class="flow-step">Cánula nasal 1-6 L/min</div>
+<div class="flow-arrow">▶</div>
+<div class="flow-step">Mascarilla simple 6-10 L</div>
+<div class="flow-arrow">▶</div>
+<div class="flow-step">Reservorio 10-15 L (FiO₂ 0,8)</div>
+<div class="flow-arrow">▶</div>
+<div class="flow-step">HFNC 30-60 L/min</div>
+<div class="flow-arrow">▶</div>
+<div class="flow-step">VNI (BiPAP/CPAP)</div>
+<div class="flow-arrow">▶</div>
+<div class="flow-step">VMI</div>
+</div>
+<div class="slide-footer">Clase 1 · Módulo I</div>
+<div class="slide-number">8 / 40</div>
+</div>
+
+<!-- DIAPOSITIVA 9: C - CIRCULACIÓN -->
+<div class="slide">
+<h1>C — Circulation (Circulación y Perfusión)</h1>
+<h2>De la presión arterial a la perfusión tisular: un cambio de paradigma</h2>
+<div class="abcde-grid">
+<div class="letra C">C</div>
+<div class="contenido-letra">
+<strong>Objetivo:</strong> identificar shock (independiente de la PA), restaurar perfusión y oxigenación tisular, controlar hemorragia evidente.
+</div>
+</div>
+
+<div class="two-col">
+<div>
+<h3>Evaluación clínica multimodal</h3>
+<ul>
+<li><strong>Ventana cutánea:</strong> llenado capilar &gt;3 s, moteado (Mottling Score ≥2), frialdad distal.</li>
+<li><strong>Ventana renal:</strong> diuresis &lt;0,5 mL/kg/h × 2 h.</li>
+<li><strong>Ventana neurológica:</strong> agitación, confusión, somnolencia.</li>
+<li><strong>Hemodinamia:</strong> FC, PA, presión de pulso estrecha (&lt;25 mmHg = signo precoz).</li>
+<li><strong>Lactato sérico:</strong> &gt;2 mmol/L sugiere hipoperfusión; &gt;4 mmol/L = shock establecido (criterio Sepsis-3).</li>
+</ul>
+</div>
+<div>
+<h3>Acciones simultáneas</h3>
+<ol>
+<li><strong>2 accesos venosos periféricos</strong> calibre grueso (14-16G).</li>
+<li>Muestras: hemograma, química, lactato, gasometría, hemocultivos × 2, tipificación.</li>
+<li>Monitorización continua (ECG, SpO₂, PANI cada 5 min).</li>
+<li><strong>Cristaloide balanceado</strong> 30 mL/kg si shock séptico (SSC 2026, condicional).</li>
+<li>Control de sangrado externo: presión directa, torniquete, hemostáticos.</li>
+<li>POCUS hemodinámico (RUSH/FALLS protocol).</li>
+</ol>
+</div>
+</div>
+
+<div class="box-perla">
+La presión arterial sistólica es un <strong>marcador tardío</strong> de shock. En adultos jóvenes pueden perderse hasta <strong>30% del volumen circulante</strong> antes de hipotensión franca. Confíe más en el lactato, llenado capilar e índice de shock (FC/PAS) — un IS &gt;1,0 predice mortalidad y necesidad de transfusión masiva.
+</div>
+<div class="slide-footer">Clase 1 · Módulo I</div>
+<div class="slide-number">9 / 40</div>
+</div>
+
+<!-- DIAPOSITIVA 10: D - DISCAPACIDAD -->
+<div class="slide">
+<h1>D — Disability (Estado Neurológico)</h1>
+<h2>El cerebro como órgano "shock" y el "shock cerebral"</h2>
+<div class="abcde-grid">
+<div class="letra D">D</div>
+<div class="contenido-letra">
+<strong>Objetivo:</strong> evaluar nivel de conciencia, focalización y excluir causas reversibles de alteración (las "5 H/T cerebrales").
+</div>
+</div>
+
+<h3>Evaluación estructurada</h3>
+<table>
+<tr><th>Componente</th><th>Herramienta</th><th>Punto de corte crítico</th></tr>
+<tr><td>Nivel de conciencia rápido</td><td><strong>AVPU</strong> (Alert / Voice / Pain / Unresponsive)</td><td>P o U → Glasgow ≤8 → vía aérea definitiva</td></tr>
+<tr><td>Profundidad y patrón</td><td><strong>Glasgow Coma Scale</strong> (3-15)</td><td>≤8: coma; ≤13: TCE moderado-grave</td></tr>
+<tr><td>Función troncoencefálica</td><td><strong>Pupilas</strong>: tamaño, simetría, reactividad</td><td>Anisocoria &gt;1 mm = herniación hasta demostrar lo contrario</td></tr>
+<tr><td>Lateralización</td><td>Examen motor por extremidades</td><td>Hemiparesia: ictus, hematoma, masa</td></tr>
+<tr><td>Glucemia capilar</td><td><strong>OBLIGATORIA</strong> en todo paciente con alteración</td><td>&lt;70 mg/dL: tratar inmediato; &gt;250: cetoacidosis/HHE</td></tr>
+</table>
+
+<div class="box-critico">
+<strong>Causas reversibles de alteración del estado mental</strong> (mnemotecnia <em>AEIOU-TIPS</em>): <strong>A</strong>lcohol/abstinencia · <strong>E</strong>pilepsia/Electrolitos/Encefalopatía · <strong>I</strong>nsulina (hipo/hiperglucemia) · <strong>O</strong>pioides · <strong>U</strong>remia · <strong>T</strong>rauma/Toxinas · <strong>I</strong>nfección (SNC/sepsis) · <strong>P</strong>sicógeno/Porfiria · <strong>S</strong>hock/Stroke. Glucemia capilar y naloxona si hay sospecha de opioide son intervenciones de alto rendimiento y bajo costo.
+</div>
+
+<div class="evidencia">
+<div class="evidencia-titulo">Evidencia</div>
+Teasdale G, et al. <em>The Glasgow Coma Scale at 40 years: standing the test of time</em>. Lancet Neurol. 2014;13(8):844-854. · Brain Trauma Foundation Guidelines, 4th ed. (vigente 2024).
+</div>
+<div class="slide-footer">Clase 1 · Módulo I</div>
+<div class="slide-number">10 / 40</div>
+</div>
+
+<!-- DIAPOSITIVA 11: E - EXPOSICIÓN -->
+<div class="slide">
+<h1>E — Exposure (Exposición y Examen Completo)</h1>
+<h2>"Lo que no se desviste, no se diagnostica"</h2>
+<div class="abcde-grid">
+<div class="letra E">E</div>
+<div class="contenido-letra">
+<strong>Objetivo:</strong> exponer completamente al paciente para detectar lesiones/signos ocultos, controlar temperatura y prevenir hipotermia iatrogénica.
+</div>
+</div>
+
+<div class="two-col">
+<div>
+<h3>Hallazgos a buscar activamente</h3>
+<ul>
+<li><strong>Piel:</strong> petequias, púrpura fulminans, livedo, eritema migrans, ictericia, lesiones por presión.</li>
+<li><strong>Espalda y dorso:</strong> rotación en bloque (log-roll) en trauma; herida penetrante posterior.</li>
+<li><strong>Periné y genitales:</strong> sangrado uretral, hematomas, gangrena de Fournier.</li>
+<li><strong>Extremidades:</strong> pulsos, asimetría, deformidad, signos de compartimental.</li>
+<li><strong>Catéteres y dispositivos:</strong> infección de sitio, mal funcionamiento.</li>
+<li><strong>Olores:</strong> cetonas (CAD), fetor hepático, alcohol.</li>
+</ul>
+</div>
+<div>
+<h3>Control térmico activo</h3>
+<ul>
+<li>Termómetro central (timpánico, esofágico, vesical) — la axilar subestima.</li>
+<li><strong>Hipotermia &lt;35°C:</strong> coagulopatía, arritmias, mortalidad ↑ en sepsis y trauma.</li>
+<li>Mantas térmicas, fluidos calentados (37-40°C), control ambiental.</li>
+<li><strong>Hipertermia:</strong> diferenciar fiebre (infección/inflamación) vs. golpe de calor / síndrome neuroléptico maligno / síndrome serotoninérgico.</li>
+</ul>
+</div>
+</div>
+
+<div class="box-perla">
+La <strong>"tríada letal del trauma"</strong> (hipotermia + acidosis + coagulopatía) se aplica también al paciente médico en shock: prevenir hipotermia es una intervención hemostática.
+</div>
+
+<div class="box-alerta">
+Tras completar E, <strong>siempre reevalúe desde A</strong>. El ABCDE es cíclico, no lineal. Cada nueva intervención puede modificar parámetros previos.
+</div>
+<div class="slide-footer">Clase 1 · Módulo I</div>
+<div class="slide-number">11 / 40</div>
+</div>
+
+<!-- DIAPOSITIVA 12: ERRORES COMUNES EN ABCDE -->
+<div class="slide">
+<h1>Errores Frecuentes en la Aplicación del ABCDE</h1>
+<h2>Lecciones de la observación clínica y la simulación</h2>
+<div class="three-col">
+<div class="box-critico">
+<strong>1. Saltarse pasos</strong><br>Ir directo al "diagnóstico interesante" sin asegurar A o B. La omisión de auscultación (44%) y llenado capilar (66%) es la regla.
+</div>
+<div class="box-critico">
+<strong>2. No reevaluar</strong><br>Tras intubación, cambio de fluidos o vasopresores, los parámetros cambian. La reevaluación cíclica es obligatoria, no opcional.
+</div>
+<div class="box-critico">
+<strong>3. Ausencia de líder</strong><br>Sin liderazgo claro, el equipo se fragmenta y la adherencia cae &gt;30%. El líder no toca al paciente: coordina.
+</div>
+<div class="box-critico">
+<strong>4. Comunicación abierta</strong><br>Órdenes al aire, sin destinatario ni confirmación. Use <em>closed-loop communication</em>: nombrar, indicar, confirmar.
+</div>
+<div class="box-critico">
+<strong>5. Equipo sobredimensionado</strong><br>Más de 7 personas en la cabecera reduce la eficiencia (Maluso 2016). Defina roles, retire excedentes.
+</div>
+<div class="box-critico">
+<strong>6. Anclaje diagnóstico</strong><br>Aferrarse al diagnóstico inicial ignorando datos discordantes. La reevaluación ABCDE protege contra este sesgo.
+</div>
+</div>
+
+<div class="evidencia">
+<div class="evidencia-titulo">Evidencia</div>
+Bergs L, et al. 2024 (PMC11437753); Maluso P, et al. <em>Trauma team size and task performance</em>. J Trauma Acute Care Surg. 2016;81(5):961-965; Olgers TJ, et al. <em>Adherence to the ABCDE approach in relation to the method of instruction</em>. BMJ Sim Tech Enhanc Learn. 2017.
+</div>
+<div class="slide-footer">Clase 1 · Módulo I</div>
+<div class="slide-number">12 / 40</div>
+</div>
+
+<!-- DIAPOSITIVA 13: SIGNOS DE ALARMA - INTRO -->
+<div class="slide">
+<h1>Signos de Alarma Fisiológicos</h1>
+<h2>Detección precoz: la diferencia entre rescate y reanimación</h2>
+<p>Hasta el <span class="highlight">70% de los paros cardiorrespiratorios intrahospitalarios</span> son precedidos por signos de deterioro fisiológico durante las 6 a 8 horas previas, frecuentemente subestimados o no documentados. Identificarlos requiere conocimiento de umbrales objetivos y conciencia situacional.</p>
+
+<h3>Los 6 parámetros centinela (Royal College of Physicians, NEWS2 2017, vigente 2024)</h3>
+<table>
+<tr><th>Parámetro</th><th>Rango fisiológico</th><th>Signo de alarma</th><th>Crítico</th></tr>
+<tr><td>Frecuencia respiratoria</td><td>12-20 rpm</td><td>&lt;12 o &gt;20</td><td>≤8 o ≥25</td></tr>
+<tr><td>SpO₂ (aire ambiente)</td><td>≥96%</td><td>94-95%</td><td>≤91%</td></tr>
+<tr><td>Presión arterial sistólica</td><td>111-219 mmHg</td><td>91-110 o ≥220</td><td>≤90</td></tr>
+<tr><td>Frecuencia cardiaca</td><td>51-90 lpm</td><td>41-50 o 91-130</td><td>≤40 o ≥131</td></tr>
+<tr><td>Nivel de conciencia</td><td>Alerta</td><td>Confuso (nuevo)</td><td>V/P/U</td></tr>
+<tr><td>Temperatura</td><td>36,1-38,0°C</td><td>35,1-36,0 o 38,1-39,0</td><td>≤35 o ≥39,1</td></tr>
+</table>
+
+<div class="box-alerta">
+La <strong>frecuencia respiratoria</strong> es el predictor más sensible y, paradójicamente, el más subregistrado. En estudios de vigilancia, hasta el 70% de las hojas de signos vitales omiten o falsean la FR. Una FR ≥25 rpm sostenida es un marcador independiente de mortalidad.
+</div>
+<div class="slide-footer">Clase 1 · Módulo I</div>
+<div class="slide-number">13 / 40</div>
+</div>
+
+<!-- DIAPOSITIVA 14: NEWS2 -->
+<div class="slide">
+<h1>NEWS2 — National Early Warning Score 2</h1>
+<h2>Estándar global de detección de deterioro</h2>
+<p>Sistema agregado de puntuación de 7 parámetros fisiológicos. Validado en &gt;500.000 pacientes. Recomendado por NHS, RCP UK, y aplicable a todo paciente adulto no obstétrico.</p>
+
+<table>
+<tr><th>Parámetro</th><th>3</th><th>2</th><th>1</th><th>0</th><th>1</th><th>2</th><th>3</th></tr>
+<tr><td>FR (rpm)</td><td>≤8</td><td></td><td>9-11</td><td>12-20</td><td></td><td>21-24</td><td>≥25</td></tr>
+<tr><td>SpO₂ escala 1 (%)</td><td>≤91</td><td>92-93</td><td>94-95</td><td>≥96</td><td></td><td></td><td></td></tr>
+<tr><td>SpO₂ escala 2 (EPOC, %)</td><td>≤83</td><td>84-85</td><td>86-87</td><td>88-92 o ≥93 aire</td><td>93-94 con O₂</td><td>95-96 con O₂</td><td>≥97 con O₂</td></tr>
+<tr><td>O₂ suplementario</td><td></td><td>Sí</td><td></td><td>No</td><td></td><td></td><td></td></tr>
+<tr><td>PAS (mmHg)</td><td>≤90</td><td>91-100</td><td>101-110</td><td>111-219</td><td></td><td></td><td>≥220</td></tr>
+<tr><td>FC (lpm)</td><td>≤40</td><td></td><td>41-50</td><td>51-90</td><td>91-110</td><td>111-130</td><td>≥131</td></tr>
+<tr><td>Conciencia</td><td></td><td></td><td></td><td>Alerta</td><td></td><td></td><td>CVPU</td></tr>
+<tr><td>Temperatura (°C)</td><td>≤35</td><td></td><td>35,1-36</td><td>36,1-38</td><td>38,1-39</td><td>≥39,1</td><td></td></tr>
+</table>
+
+<h3>Interpretación y respuesta</h3>
+<div class="three-col">
+<div class="box"><strong>0-4 puntos</strong><br>Riesgo bajo. Vigilancia mín. cada 4-6 h. Evaluación por enfermería.</div>
+<div class="box-alerta"><strong>5-6 ó cualquier "3" único</strong><br>Riesgo medio. Revaloración urgente por médico, monitorización continua.</div>
+<div class="box-critico"><strong>≥7 puntos</strong><br>Riesgo alto. Activación inmediata de RRT/MET. Considere UCI.</div>
+</div>
+
+<div class="evidencia">
+<div class="evidencia-titulo">Evidencia</div>
+Marincowitz C, et al. <em>Validation of MEWS, NEWS, NEWS-2 and qSOFA</em>. Sci Rep. 2024;14:24545 (PMC11608163). NEWS2 mostró AUC 0,82 para mortalidad intrahospitalaria, superior a qSOFA (AUC 0,69).
+</div>
+<div class="slide-footer">Clase 1 · Módulo I</div>
+<div class="slide-number">14 / 40</div>
+</div>
+
+<!-- DIAPOSITIVA 15: qSOFA y SOFA -->
+<div class="slide">
+<h1>qSOFA y SOFA</h1>
+<h2>Detección de disfunción orgánica asociada a infección</h2>
+<div class="two-col">
+<div>
+<h3>qSOFA — herramienta de cabecera (Sepsis-3, 2016)</h3>
+<p>Tres criterios, 1 punto cada uno:</p>
+<ul>
+<li>FR ≥22 rpm</li>
+<li>Alteración del estado mental (Glasgow &lt;15)</li>
+<li>PAS ≤100 mmHg</li>
+</ul>
+<p><strong>≥2 puntos</strong> en paciente con sospecha de infección → mayor riesgo de mortalidad y estancia prolongada en UCI.</p>
+<div class="box-alerta">
+<strong>Limitación crítica:</strong> qSOFA tiene <strong>baja sensibilidad</strong> (≈60%) y no debe usarse como herramienta única de tamizaje. Surviving Sepsis Campaign 2021/2026 <strong>recomienda en contra</strong> de qSOFA como único screening para sepsis; prefiere NEWS2 o MEWS.
+</div>
+</div>
+<div>
+<h3>SOFA — Sequential Organ Failure Assessment</h3>
+<p>Evalúa 6 sistemas (0-4 puntos cada uno, total 0-24):</p>
+<ol>
+<li><strong>Respiratorio:</strong> PaO₂/FiO₂</li>
+<li><strong>Coagulación:</strong> plaquetas</li>
+<li><strong>Hepático:</strong> bilirrubina</li>
+<li><strong>Cardiovascular:</strong> PAM, vasopresores</li>
+<li><strong>SNC:</strong> Glasgow</li>
+<li><strong>Renal:</strong> creatinina o diuresis</li>
+</ol>
+<p>Definición de sepsis (Sepsis-3): infección + <strong>incremento ≥2 puntos</strong> en SOFA respecto al basal.</p>
+<p>Mortalidad estimada: SOFA 0-6 ≈10%; 7-9 ≈15-20%; 10-12 ≈40-50%; ≥13 &gt;80%.</p>
+</div>
+</div>
+
+<div class="evidencia">
+<div class="evidencia-titulo">Evidencia central</div>
+Singer M, et al. <em>The Third International Consensus Definitions for Sepsis and Septic Shock (Sepsis-3)</em>. JAMA. 2016;315(8):801-810. · Evans L, et al. SSC 2021 / actualización 2026 (SCCM/ESICM).
+</div>
+<div class="slide-footer">Clase 1 · Módulo I</div>
+<div class="slide-number">15 / 40</div>
+</div>
+
+<!-- DIAPOSITIVA 16: COMPARACIÓN ESCALAS -->
+<div class="slide">
+<h1>Comparación de Escalas de Alerta Temprana</h1>
+<h2>¿Cuál usar y cuándo?</h2>
+<table>
+<tr><th>Escala</th><th>Población</th><th>Variables</th><th>AUC mortalidad</th><th>Fortaleza</th><th>Limitación</th></tr>
+<tr><td><strong>NEWS2</strong></td><td>Adulto general hospitalizado</td><td>7 fisiológicas</td><td>0,80-0,89</td><td>Mejor desempeño global; recomendada NHS/RCP</td><td>Menor utilidad en EPOC sin escala 2</td></tr>
+<tr><td><strong>MEWS</strong></td><td>Adulto general</td><td>5 fisiológicas</td><td>0,69-0,78</td><td>Simple, ampliamente utilizada</td><td>Inferior a NEWS2 en validaciones recientes</td></tr>
+<tr><td><strong>qSOFA</strong></td><td>Sospecha de infección</td><td>3 (FR, conciencia, PAS)</td><td>0,65-0,72</td><td>Muy específica; rápida</td><td>Baja sensibilidad; tardía</td></tr>
+<tr><td><strong>SIRS</strong></td><td>Tamizaje de sepsis</td><td>4 (T°, FC, FR, leucocitos)</td><td>0,60-0,70</td><td>Histórica, sensible</td><td>Inespecífica; abandonada en Sepsis-3</td></tr>
+<tr><td><strong>SOFA</strong></td><td>UCI / disfunción orgánica</td><td>6 sistemas</td><td>0,75-0,85</td><td>Definicional para sepsis</td><td>Requiere laboratorio</td></tr>
+<tr><td><strong>APACHE II</strong></td><td>UCI (24 h)</td><td>12 + edad + crónicas</td><td>0,80-0,86</td><td>Pronóstica robusta</td><td>Compleja; no para tamizaje</td></tr>
+</table>
+
+<div class="box-perla">
+<strong>Estrategia recomendada (SCCM/ESICM 2024-2026):</strong> NEWS2 como herramienta de tamizaje hospitalario universal + SOFA para definir disfunción orgánica en sospecha de sepsis. qSOFA queda relegada a herramienta complementaria, no de cribado primario.
+</div>
+
+<div class="evidencia">
+<div class="evidencia-titulo">Evidencia</div>
+Marincowitz C, et al. 2024 (PMC11608163); Liu VX, et al. <em>Comparison of early warning scoring systems</em>. JAMA Netw Open. 2020;3(5):e205191.
+</div>
+<div class="slide-footer">Clase 1 · Módulo I</div>
+<div class="slide-number">16 / 40</div>
+</div>
+
+<!-- DIAPOSITIVA 17: TRIAGE - CONCEPTO -->
+<div class="slide">
+<h1>Triage: Concepto y Evolución</h1>
+<h2>Del campo de batalla a la medicina basada en evidencia</h2>
+<p>El término <strong>triage</strong> deriva del francés <em>trier</em> (clasificar, separar). Sus orígenes se remontan a los cirujanos militares napoleónicos (Dominique-Jean Larrey, 1797), quienes establecieron la clasificación de heridos por severidad para asignar recursos limitados. Hoy es la <span class="highlight">primera decisión clínica</span> en cualquier servicio de urgencias.</p>
+
+<h3>Principios fundamentales</h3>
+<div class="three-col">
+<div class="box">
+<strong>Equidad clínica:</strong> el paciente más enfermo es atendido primero, no el que llega primero.
+</div>
+<div class="box">
+<strong>Eficiencia:</strong> asignación racional de recursos (camas, equipo, especialistas) según prioridad.
+</div>
+<div class="box">
+<strong>Seguridad:</strong> reducir el "tiempo a la intervención crítica" en pacientes graves.
+</div>
+</div>
+
+<h3>Sistemas de triage validados de 5 niveles (estándar internacional)</h3>
+<table>
+<tr><th>Sistema</th><th>Origen</th><th>Niveles</th><th>Característica distintiva</th></tr>
+<tr><td><strong>ESI</strong> (Emergency Severity Index)</td><td>EE.UU. (5ª ed., 2023)</td><td>1-5</td><td>Considera recursos esperados además de agudeza</td></tr>
+<tr><td><strong>MTS</strong> (Manchester Triage System)</td><td>Reino Unido (1997)</td><td>1-5 (rojo→azul)</td><td>52 diagramas de flujo basados en queja principal</td></tr>
+<tr><td><strong>CTAS</strong> (Canadian Triage)</td><td>Canadá</td><td>1-5</td><td>Tiempos máximos hasta 1ª evaluación médica</td></tr>
+<tr><td><strong>ATS</strong> (Australasian Triage Scale)</td><td>Australia/NZ</td><td>1-5</td><td>Tiempo objetivo de atención muy estricto</td></tr>
+<tr><td><strong>START</strong></td><td>EE.UU. (catástrofes)</td><td>4 (negro/rojo/amarillo/verde)</td><td>Para incidentes con múltiples víctimas; &lt;60 s/paciente</td></tr>
+</table>
+<div class="slide-footer">Clase 1 · Módulo I</div>
+<div class="slide-number">17 / 40</div>
+</div>
+
+<!-- DIAPOSITIVA 18: ESI -->
+<div class="slide">
+<h1>Emergency Severity Index (ESI) — 5ª Edición</h1>
+<h2>El sistema más utilizado en EE.UU. y validado globalmente</h2>
+<p>El ESI es un algoritmo de 5 niveles que clasifica pacientes según <strong>dos dimensiones</strong>: agudeza (riesgo vital, deterioro potencial) y recursos previstos para su atención.</p>
+
+<table>
+<tr><th>Nivel</th><th>Categoría</th><th>Criterio principal</th><th>Tiempo objetivo</th><th>Ejemplos</th></tr>
+<tr><td style="background:#C1121F;color:white;text-align:center;font-weight:800;">1</td><td>Resucitación</td><td>Riesgo vital inmediato; intervención salvadora</td><td>Inmediato</td><td>Paro CR, intubación, shock severo, status convulsivo</td></tr>
+<tr><td style="background:#F77F00;color:white;text-align:center;font-weight:800;">2</td><td>Emergencia</td><td>Alto riesgo / signos vitales en zona crítica / dolor torácico de alto riesgo / alteración mental</td><td>&lt;10 min</td><td>SCA, ictus &lt;6 h, sepsis, asma severa, sospecha de DVT/TEP</td></tr>
+<tr><td style="background:#FCBF49;text-align:center;font-weight:800;">3</td><td>Urgencia</td><td>Estable; requiere ≥2 recursos</td><td>&lt;30-60 min</td><td>Dolor abdominal con labs e imagen, neumonía no severa</td></tr>
+<tr><td style="background:#2A9D8F;color:white;text-align:center;font-weight:800;">4</td><td>Menor</td><td>Estable; 1 recurso</td><td>1-2 h</td><td>Esguince con Rx, infección urinaria simple</td></tr>
+<tr><td style="background:#5FA8D3;color:white;text-align:center;font-weight:800;">5</td><td>No urgente</td><td>Estable; 0 recursos</td><td>&gt;2 h</td><td>Renovación de receta, retiro de sutura</td></tr>
+</table>
+
+<div class="box-perla">
+<strong>"Recursos" en ESI</strong>: laboratorio, imagen, ECG, líquidos IV, medicamentos IV/IM/nebulizados, consulta especialista, procedimientos simples (sutura) o complejos. NO se cuentan: examen físico, historia, oral, prescripción al alta, vendaje simple.
+</div>
+
+<div class="evidencia">
+<div class="evidencia-titulo">Evidencia</div>
+ESI Handbook, 5th ed. (AHRQ/Emergency Nurses Association, 2023); validación de ESI: sensibilidad 95% para alta agudeza, especificidad 78%. Comparativa MTS vs ESI: PMC12751399 (2025).
+</div>
+<div class="slide-footer">Clase 1 · Módulo I</div>
+<div class="slide-number">18 / 40</div>
+</div>
+
+<!-- DIAPOSITIVA 19: MANCHESTER -->
+<div class="slide">
+<h1>Manchester Triage System (MTS)</h1>
+<h2>El estándar europeo basado en queja principal</h2>
+<p>Sistema desarrollado en 1994 por el Manchester Triage Group, ampliamente difundido en Europa, América Latina (Brasil, Portugal) y partes de África. Utiliza <strong>52 algoritmos de queja principal</strong> con discriminadores generales y específicos.</p>
+
+<table>
+<tr><th>Color</th><th>Nivel</th><th>Tiempo máximo</th><th>Discriminadores generales</th></tr>
+<tr><td style="background:#C1121F;color:white;text-align:center;font-weight:800;">ROJO</td><td>Inmediato</td><td>0 min</td><td>Vía aérea comprometida, respiración inadecuada, shock, inconsciente, convulsionando, exsanguinación</td></tr>
+<tr><td style="background:#F77F00;color:white;text-align:center;font-weight:800;">NARANJA</td><td>Muy urgente</td><td>10 min</td><td>Dolor severo, sangrado mayor, alteración conciencia, hipoxia, hipoglucemia, hipertermia &gt;41°C</td></tr>
+<tr><td style="background:#FCBF49;text-align:center;font-weight:800;">AMARILLO</td><td>Urgente</td><td>60 min</td><td>Dolor moderado, sangrado moderado, historia psiquiátrica, vómito persistente, fiebre alta</td></tr>
+<tr><td style="background:#2A9D8F;color:white;text-align:center;font-weight:800;">VERDE</td><td>Normal</td><td>120 min</td><td>Dolor leve reciente, eventos recientes &lt;7 días</td></tr>
+<tr><td style="background:#5FA8D3;color:white;text-align:center;font-weight:800;">AZUL</td><td>No urgente</td><td>240 min</td><td>Sin discriminadores de mayor prioridad</td></tr>
+</table>
+
+<div class="box">
+<h3>MTS vs ESI — síntesis comparativa</h3>
+<ul>
+<li><strong>MTS</strong>: alta especificidad para alta gravedad; mayor reproducibilidad inter-observador (kappa 0,77-0,85); funciona mejor en sistemas con flujos de queja específica.</li>
+<li><strong>ESI</strong>: mejor predicción de uso de recursos y hospitalización; menor desempeño en pediátricos y ancianos.</li>
+<li>Ambos tienen <strong>desempeño moderado-bueno</strong> (validez moderada en ancianos y niños — PLoS ONE 2017).</li>
+</ul>
+</div>
+
+<div class="evidencia">
+<div class="evidencia-titulo">Evidencia</div>
+Mackway-Jones K. <em>Emergency Triage: Manchester Triage Group</em>. 3rd ed. Wiley-Blackwell 2014. Comparativa: PMC12751399 (2025); Zachariasse JM, et al. PLoS ONE 2017;12(2):e0170811.
+</div>
+<div class="slide-footer">Clase 1 · Módulo I</div>
+<div class="slide-number">19 / 40</div>
+</div>
+
+<!-- DIAPOSITIVA 20: TRIAGE AVANZADO -->
+<div class="slide">
+<h1>Triage Avanzado</h1>
+<h2>Más allá de la categorización: protocolos de inicio temprano</h2>
+<p>El <strong>triage avanzado</strong> (Advanced Triage / Nurse-Initiated Protocols) extiende la función clásica al permitir que el personal entrenado inicie intervenciones diagnósticas y terapéuticas antes de la evaluación médica formal, con base en protocolos institucionales.</p>
+
+<div class="two-col">
+<div>
+<h3>Intervenciones típicas autorizadas</h3>
+<ul>
+<li>ECG en dolor torácico (objetivo &lt;10 min).</li>
+<li>Glucemia capilar en alteración mental.</li>
+<li>Analgesia escalonada según escala numérica.</li>
+<li>Antipiréticos en fiebre.</li>
+<li>Estudios radiológicos en trauma de extremidades.</li>
+<li>Laboratorio inicial (hemograma, química, troponina, lactato).</li>
+<li>Inicio de antibiótico en sepsis identificada (bundle 1 hora).</li>
+<li>Broncodilatadores en asma/EPOC.</li>
+</ul>
+</div>
+<div>
+<h3>Beneficios documentados</h3>
+<div class="evidencia">
+Cabilan CJ, et al. <em>Advanced triage protocols in the emergency department</em>. JBI Database Syst Rev. 2017 (PMC8966058):
+<ul>
+<li>Reducción del tiempo a primera intervención: <strong>20-30%</strong>.</li>
+<li>Reducción de estancia en urgencias: <strong>10-25 minutos</strong>.</li>
+<li>Sin compromiso de seguridad ni calidad.</li>
+<li>Mayor satisfacción del paciente.</li>
+</ul>
+</div>
+<div class="evidencia">
+Saban M, et al. (2023, PMC10170939): triage avanzado por enfermería en ED de alta complejidad mejoró outcomes de tiempo a tratamiento en SCA, ictus y sepsis.
+</div>
+</div>
+</div>
+
+<div class="box-alerta">
+Implementación requiere: <strong>protocolos institucionales escritos</strong>, entrenamiento estructurado, supervisión médica disponible, auditoría continua, sistema de reporte de errores y respaldo legal/institucional explícito.
+</div>
+<div class="slide-footer">Clase 1 · Módulo I</div>
+<div class="slide-number">20 / 40</div>
+</div>
+
+<!-- DIAPOSITIVA 21: ERRORES DE TRIAGE -->
+<div class="slide">
+<h1>Errores de Triage y Seguridad del Paciente</h1>
+<h2>Mistriage: cuando la primera decisión es la equivocada</h2>
+<p>Los errores de triage son <strong>eventos adversos prevenibles</strong> con consecuencias clínicas y médico-legales relevantes. La literatura documenta tasas de error entre 13% y 40%, con predominio del <strong>undertriage</strong> (subestimación) sobre el <strong>overtriage</strong>.</p>
+
+<div class="two-col">
+<div>
+<h3>Undertriage (subestimación)</h3>
+<div class="box-critico">
+Asignar un nivel de menor agudeza al que corresponde. Riesgos:
+<ul>
+<li>Retraso en intervención crítica.</li>
+<li>Deterioro en sala de espera.</li>
+<li>Mortalidad <strong>2-3 veces mayor</strong>.</li>
+<li>Eventos legales mayores.</li>
+</ul>
+Tasas reportadas: 5-30%, mayor en ancianos, mujeres, dolor abdominal atípico, presentaciones psiquiátricas.
+</div>
+</div>
+<div>
+<h3>Overtriage (sobreestimación)</h3>
+<div class="box-alerta">
+Asignar un nivel mayor al necesario. Riesgos:
+<ul>
+<li>Sobreutilización de recursos críticos.</li>
+<li>Fatiga del sistema (alarm fatigue).</li>
+<li>Demora en pacientes verdaderamente graves.</li>
+</ul>
+Aceptable hasta 30-50% en sistemas conservadores; objetivo: balance riesgo-recurso.
+</div>
+</div>
+</div>
+
+<h3>Factores predisponentes a mistriage</h3>
+<div class="three-col">
+<div class="box"><strong>Paciente:</strong> ancianos, presentaciones atípicas, barreras de comunicación, comorbilidad psiquiátrica.</div>
+<div class="box"><strong>Profesional:</strong> experiencia &lt;2 años, fatiga, sesgos cognitivos (anclaje, disponibilidad), falta de entrenamiento estructurado.</div>
+<div class="box"><strong>Sistémico:</strong> sobrecarga (overcrowding), interrupciones, ausencia de auditoría, protocolos no actualizados.</div>
+</div>
+
+<div class="evidencia">
+<div class="evidencia-titulo">Evidencia</div>
+McCutcheon LRM, et al. <em>The Impact of Emergency Triage Practices on Patient Safety</em>. J Emerg Nurs. 2024;50(6):844-850. (S0099-1767(24)00359-3).
+</div>
+<div class="slide-footer">Clase 1 · Módulo I</div>
+<div class="slide-number">21 / 40</div>
+</div>
+
+<!-- DIAPOSITIVA 22: PRIORIZACIÓN -->
+<div class="slide">
+<h1>Priorización Clínica: La Lógica de la Decisión</h1>
+<h2>Más allá del puntaje: razonamiento clínico estructurado</h2>
+<p>La priorización integra el resultado del triage con el juicio clínico y los recursos disponibles. Tres marcos de decisión complementarios:</p>
+
+<div class="three-col">
+<div class="box">
+<h3>1. Pirámide de Maslow clínica</h3>
+<ol>
+<li>Vida (A→C)</li>
+<li>Función orgánica (D)</li>
+<li>Confort (analgesia, ansiolíticos)</li>
+<li>Diagnóstico definitivo</li>
+<li>Disposición</li>
+</ol>
+</div>
+<div class="box">
+<h3>2. Matriz de tiempo-criticidad</h3>
+<ul>
+<li><strong>Time-critical:</strong> SCA, ictus, sepsis, trauma mayor, status (ventana terapéutica corta).</li>
+<li><strong>Severity-driven:</strong> grave pero estable.</li>
+<li><strong>Diagnostic-driven:</strong> síntoma sugestivo pero sin datos de gravedad.</li>
+</ul>
+</div>
+<div class="box">
+<h3>3. Gestión de cohortes</h3>
+<ul>
+<li>"Sicker first" + "stable surveillance".</li>
+<li>Reevaluación cada 30-60 min en sala de espera de pacientes &gt; nivel 3.</li>
+<li>Identificación visual (codificación por colores).</li>
+</ul>
+</div>
+</div>
+
+<h3>Pacientes con prioridad oculta — los "lobos con piel de cordero"</h3>
+<div class="box-critico">
+<ul>
+<li><strong>Ancianos con infección:</strong> pueden no presentar fiebre; delirium puede ser único signo (ancianos: 30-40% sin SIRS clásico).</li>
+<li><strong>Inmunocomprometidos:</strong> respuesta inflamatoria atenuada.</li>
+<li><strong>Embarazadas:</strong> compensación fisiológica oculta hipovolemia hasta etapas tardías.</li>
+<li><strong>Pacientes con beta-bloqueo:</strong> taquicardia compensadora ausente.</li>
+<li><strong>Drogas/alcohol:</strong> alteración de signos vitales puede atribuirse erróneamente al consumo.</li>
+<li><strong>Dolor torácico atípico en mujeres y diabéticos:</strong> SCA con presentación inusual.</li>
+</ul>
+</div>
+<div class="slide-footer">Clase 1 · Módulo I</div>
+<div class="slide-number">22 / 40</div>
+</div>
+
+<!-- DIAPOSITIVA 23: SHOCK INDIFERENCIADO -->
+<div class="slide">
+<h1>Shock Indiferenciado en la Evaluación Inicial</h1>
+<h2>Reconocimiento de fenotipos en los primeros minutos</h2>
+<p>El shock se define como <strong>hipoperfusión tisular sistémica con disoxia celular</strong>, no como un valor de presión arterial. La identificación temprana del fenotipo guía intervenciones específicas.</p>
+
+<table>
+<tr><th>Fenotipo</th><th>Mecanismo</th><th>Hallazgos clínicos</th><th>POCUS</th><th>Intervención inicial</th></tr>
+<tr><td><strong>Hipovolémico</strong></td><td>↓ Precarga (sangrado, deshidratación)</td><td>Frío, taquicárdico, llenado &gt;3 s, vena yugular plana</td><td>VCI colapsada, VI hipercontráctil, "kissing walls"</td><td>Cristaloide / hemoderivados; control de hemorragia</td></tr>
+<tr><td><strong>Distributivo (séptico)</strong></td><td>Vasoplejía + fuga capilar</td><td>Caliente o frío tardío, fiebre/hipotermia, foco infeccioso</td><td>VCI variable, VI hiperdinámico inicialmente</td><td>Antibiótico ≤1 h + cristaloide 30 mL/kg + noradrenalina</td></tr>
+<tr><td><strong>Cardiogénico</strong></td><td>Falla de bomba</td><td>Frío, congestivo, S3, crepitantes, ingurgitación yugular</td><td>VI hipocontráctil, líneas B pulmonares, VCI dilatada</td><td>Diuresis cuidadosa, inotrópico (dobutamina), revascularización</td></tr>
+<tr><td><strong>Obstructivo</strong></td><td>Obstrucción al llenado o salida</td><td>Yugulares ingurgitadas + pulmones limpios (TEP, taponamiento, NTX)</td><td>VD dilatado/disfunción (TEP), derrame pericárdico con colapso, slide pulmonar ausente</td><td>Causa específica: trombólisis, pericardiocentesis, descompresión</td></tr>
+</table>
+
+<div class="box-perla">
+La <strong>presión venosa yugular</strong> al examen físico discrimina rápidamente: yugulares <strong>planas</strong> en hipovolémico/distributivo precoz; yugulares <strong>ingurgitadas</strong> en cardiogénico/obstructivo. Este simple hallazgo redirige toda la estrategia de fluidos.
+</div>
+<div class="slide-footer">Clase 1 · Módulo I</div>
+<div class="slide-number">23 / 40</div>
+</div>
+
+<!-- DIAPOSITIVA 24: POCUS RUSH -->
+<div class="slide">
+<h1>POCUS en la Evaluación Inicial</h1>
+<h2>El protocolo RUSH y la nueva era diagnóstica</h2>
+<p>El <strong>Point-of-Care Ultrasound</strong> ha pasado de herramienta opcional a estándar emergente en la evaluación del paciente crítico. Las guías SSC 2026 incluyen una <strong>recomendación condicional a favor</strong> de POCUS para guiar la resucitación en sepsis.</p>
+
+<h3>Protocolo RUSH (Rapid Ultrasound for Shock and Hypotension)</h3>
+<table>
+<tr><th>Componente</th><th>"P"</th><th>Hallazgos clave</th><th>Implicación</th></tr>
+<tr><td>Pump (corazón)</td><td>Bomba</td><td>Función VI, derrame pericárdico con colapso, dilatación VD</td><td>Cardiogénico vs obstructivo</td></tr>
+<tr><td>Tank (volumen)</td><td>Tanque</td><td>VCI (diámetro, colapsabilidad), líneas B pulmonares, líquido libre (FAST)</td><td>Estado de volumen y fuga</td></tr>
+<tr><td>Pipes (vasos)</td><td>Tuberías</td><td>Aorta abdominal (aneurisma), DVT en MMII</td><td>Hipovolémico (AAA roto), TEP</td></tr>
+</table>
+
+<div class="two-col">
+<div>
+<h3>Otros protocolos clave</h3>
+<ul>
+<li><strong>FAST/E-FAST:</strong> trauma — líquido libre, neumotórax.</li>
+<li><strong>BLUE protocol:</strong> insuficiencia respiratoria aguda (Lichtenstein).</li>
+<li><strong>FALLS protocol:</strong> guía de fluidoterapia.</li>
+<li><strong>Resuscitative TEE:</strong> en paro y shock refractario.</li>
+</ul>
+</div>
+<div>
+<h3>Evidencia 2025-2026</h3>
+<div class="evidencia">
+Atkinson PR, et al. POCUS-guided resuscitation reduce mortality (RR 0,69; IC95% 0,54-0,89) y mejora identificación etiológica del shock (PMC12872035, 2025). AHA 2025: POCUS en paro debe minimizar interrupciones de RCP.
+</div>
+</div>
+</div>
+
+<div class="box-alerta">
+POCUS no reemplaza la evaluación clínica ni el ABCDE: la <strong>complementa</strong>. Su uso requiere entrenamiento estructurado (≥25-50 estudios supervisados por ventana) y certificación institucional.
+</div>
+<div class="slide-footer">Clase 1 · Módulo I</div>
+<div class="slide-number">24 / 40</div>
+</div>
+
+<!-- DIAPOSITIVA 25: ESTABILIZACIÓN HEMODINÁMICA -->
+<div class="slide">
+<h1>Estabilización Inicial: Metas Hemodinámicas</h1>
+<h2>Targets de resucitación basados en evidencia (SSC 2026)</h2>
+<table>
+<tr><th>Variable</th><th>Meta inicial</th><th>Comentario</th></tr>
+<tr><td>PAM</td><td><strong>≥65 mmHg</strong></td><td>Considerar ≥80-85 en HTA crónica conocida (estudio SEPSISPAM)</td></tr>
+<tr><td>FC</td><td>50-100 lpm</td><td>Taquicardia persistente &gt;110 sugiere resucitación incompleta</td></tr>
+<tr><td>SpO₂</td><td>92-96%</td><td>Evitar hiperoxia (mortalidad ↑ con SpO₂ &gt;98% sostenido en críticos)</td></tr>
+<tr><td>Diuresis</td><td>≥0,5 mL/kg/h</td><td>Marcador de perfusión renal; no usar de forma aislada</td></tr>
+<tr><td>Lactato</td><td>Descenso ≥10% en 2 h; normalización &lt;2 mmol/L en 6-24 h</td><td>Aclaramiento de lactato como guía (recomendación SSC)</td></tr>
+<tr><td>Llenado capilar</td><td>≤3 s</td><td>ANDROMEDA-SHOCK: equivalente o superior al lactato como guía</td></tr>
+<tr><td>ScvO₂</td><td>≥70% (si disponible)</td><td>No requerido como meta única (post-ProCESS/ARISE/ProMISe)</td></tr>
+</table>
+
+<div class="box-perla">
+El estudio <strong>ANDROMEDA-SHOCK</strong> (JAMA 2019) demostró que la resucitación guiada por <strong>llenado capilar</strong> fue al menos equivalente —y en análisis bayesiano superior— a la guiada por lactato en mortalidad a 28 días en shock séptico. Lección: no subestimar el examen físico repetido.
+</div>
+
+<h3>Reglas de oro para fluidoterapia</h3>
+<ul>
+<li><strong>Cristaloides balanceados</strong> (Ringer lactato, Plasma-Lyte) preferidos sobre solución salina al 0,9% (PLUS, BaSICS, SMART trials).</li>
+<li>Bolo inicial 30 mL/kg en sepsis (recomendación condicional SSC 2026, individualizar).</li>
+<li>Reevaluación cada bolo de 250-500 mL: respuesta → continuar; no respuesta → vasopresor.</li>
+<li>Evitar sobreresucitación: balance positivo &gt;5 L/24 h se asocia a mortalidad ↑.</li>
+</ul>
+<div class="slide-footer">Clase 1 · Módulo I</div>
+<div class="slide-number">25 / 40</div>
+</div>
+
+<!-- DIAPOSITIVA 26: VASOPRESORES -->
+<div class="slide">
+<h1>Vasopresores e Inotrópicos: Selección Inicial</h1>
+<h2>Cuándo, cuál y a qué dosis comenzar</h2>
+<table>
+<tr><th>Fármaco</th><th>Receptor / mecanismo</th><th>Dosis inicial</th><th>Indicación principal</th><th>Línea</th></tr>
+<tr><td><strong>Noradrenalina</strong></td><td>α₁ &gt; β₁</td><td>0,05-0,1 µg/kg/min, titular hasta 0,5-1,0</td><td>Shock séptico, vasodilatado</td><td><strong>Primera</strong></td></tr>
+<tr><td><strong>Vasopresina</strong></td><td>V1a (vasoconstricción)</td><td>0,03 U/min (fija)</td><td>Adyuvante a noradrenalina (ahorro de catecolaminas)</td><td>Segunda</td></tr>
+<tr><td><strong>Adrenalina</strong></td><td>α + β₁ + β₂</td><td>0,05-0,5 µg/kg/min</td><td>Shock refractario, anafilaxia, paro CR</td><td>Segunda/tercera</td></tr>
+<tr><td><strong>Dobutamina</strong></td><td>β₁ &gt; β₂</td><td>2,5-20 µg/kg/min</td><td>Shock cardiogénico, séptico con disfunción VI</td><td>Inotrópico</td></tr>
+<tr><td><strong>Dopamina</strong></td><td>Dosis-dependiente</td><td>5-20 µg/kg/min</td><td>NO de primera línea (↑ arritmias y mortalidad — De Backer NEJM 2010)</td><td>Excepción</td></tr>
+<tr><td><strong>Fenilefrina</strong></td><td>α₁ puro</td><td>40-200 µg/min</td><td>Shock con taquiarritmia</td><td>Selectiva</td></tr>
+<tr><td><strong>Angiotensina II</strong></td><td>AT1</td><td>5-20 ng/kg/min</td><td>Shock vasodilatado refractario (ATHOS-3)</td><td>Rescate</td></tr>
+</table>
+
+<div class="box-alerta">
+SSC 2026 recomienda <strong>iniciar noradrenalina precozmente</strong>, incluso a través de <strong>acceso venoso periférico</strong> (calibre grueso, vena proximal, vigilancia de extravasación) si la inserción de central retrasaría su inicio. La hipotensión persistente es más letal que el riesgo de extravasación periférica controlada.
+</div>
+
+<div class="evidencia">
+<div class="evidencia-titulo">Evidencia</div>
+Evans L, et al. SSC 2021/2026. De Backer D, et al. <em>Comparison of dopamine and norepinephrine in the treatment of shock</em>. NEJM. 2010;362:779-789. CENSER trial (early NA): Permpikul C, et al. Am J Respir Crit Care Med. 2019.
+</div>
+<div class="slide-footer">Clase 1 · Módulo I</div>
+<div class="slide-number">26 / 40</div>
+</div>
+
+<!-- DIAPOSITIVA 27: BUNDLE 1 HORA SEPSIS -->
+<div class="slide">
+<h1>Bundle de Sepsis de 1 Hora</h1>
+<h2>Las 5 acciones que cambian el desenlace</h2>
+<p>El bundle de la <strong>"hora de oro"</strong> en sepsis sintetiza las intervenciones con mayor impacto en mortalidad. Cada hora de demora en su implementación incrementa la mortalidad un 4-7%.</p>
+
+<div class="flow">
+<div class="flow-step" style="background:var(--rojo-critico);">1. Medir lactato<br>(repetir si &gt;2 mmol/L)</div>
+<div class="flow-arrow">▶</div>
+<div class="flow-step" style="background:var(--naranja-alerta);">2. Hemocultivos<br>antes del antibiótico</div>
+<div class="flow-arrow">▶</div>
+<div class="flow-step" style="background:var(--amarillo);color:var(--azul-profundo);">3. Antibiótico empírico<br>de amplio espectro</div>
+<div class="flow-arrow">▶</div>
+<div class="flow-step" style="background:var(--verde-estable);">4. Cristaloide 30 mL/kg<br>si hipotensión o lactato ≥4</div>
+<div class="flow-arrow">▶</div>
+<div class="flow-step" style="background:var(--celeste);">5. Vasopresor<br>si PAM &lt;65 post-fluidos</div>
+</div>
+
+<div class="two-col">
+<div>
+<h3>Selección antibiótica empírica</h3>
+<ul>
+<li><strong>Comunidad sin riesgo MMR:</strong> ceftriaxona ± azitromicina ± metronidazol según foco.</li>
+<li><strong>Hospitalario / inmunocomprometido:</strong> piperacilina-tazobactam o meropenem ± vancomicina/linezolid.</li>
+<li><strong>Sospecha de Pseudomonas:</strong> cefepime, piperacilina-tazobactam o carbapenémico antipseudomonas.</li>
+<li><strong>Sospecha hongos:</strong> equinocandina si neutropenia o colonización conocida.</li>
+</ul>
+</div>
+<div>
+<h3>Control del foco (≤6-12 h)</h3>
+<ul>
+<li>Drenaje de absceso, colangitis, empiema.</li>
+<li>Retiro de catéter infectado.</li>
+<li>Cirugía urgente: peritonitis, fascitis necrotizante, isquemia mesentérica.</li>
+<li>El control del foco es <strong>tan importante como el antibiótico</strong>; sin él, el bundle fracasa.</li>
+</ul>
+</div>
+</div>
+
+<div class="evidencia">
+<div class="evidencia-titulo">Evidencia central</div>
+SSC 2026 (SCCM/ESICM). Seymour CW, et al. <em>Time to Treatment and Mortality during Mandated Emergency Care for Sepsis</em>. NEJM. 2017;376(23):2235-2244 — cada hora de demora en bundle: OR 1,04 mortalidad.
+</div>
+<div class="slide-footer">Clase 1 · Módulo I</div>
+<div class="slide-number">27 / 40</div>
+</div>
+
+<!-- DIAPOSITIVA 28: CRITERIOS UCI -->
+<div class="slide">
+<h1>Criterios de Ingreso a UCI</h1>
+<h2>Decisión de alto impacto: cuándo escalar</h2>
+<p>La decisión de admisión a UCI debe basarse en criterios objetivos (modelo SCCM 2016, vigente 2024), considerando: necesidad de soporte orgánico actual, riesgo de deterioro inminente, beneficio esperado y voluntades anticipadas.</p>
+
+<h3>Modelo de priorización SCCM (4 niveles)</h3>
+<table>
+<tr><th>Prioridad</th><th>Descripción</th><th>Ejemplos</th></tr>
+<tr><td><strong>1 (mayor)</strong></td><td>Inestables; requieren intervenciones que solo UCI puede dar</td><td>Shock con vasopresores, VMI, monitorización invasiva, post-paro</td></tr>
+<tr><td><strong>2</strong></td><td>Estables actualmente, pero con alto riesgo de deterioro súbito</td><td>SCA con arritmia maligna potencial, sepsis grave estabilizada, post-quirúrgico mayor</td></tr>
+<tr><td><strong>3</strong></td><td>Inestables con baja probabilidad de recuperación; admitir con metas limitadas</td><td>Cáncer metastásico con sepsis, falla multiorgánica avanzada</td></tr>
+<tr><td><strong>4 (no admisión)</strong></td><td>Demasiado bien (no requieren) o demasiado mal (sin beneficio)</td><td>Cetoacidosis leve, fase terminal sin reversibilidad</td></tr>
+</table>
+
+<div class="two-col">
+<div>
+<h3>Criterios fisiológicos objetivos</h3>
+<ul>
+<li>FR &gt;35 o &lt;5 rpm.</li>
+<li>PAS &lt;80 mmHg refractaria.</li>
+<li>SpO₂ &lt;90% con FiO₂ ≥0,5.</li>
+<li>pH &lt;7,2 o &gt;7,6.</li>
+<li>Glasgow ≤8 agudo.</li>
+<li>Lactato &gt;4 mmol/L persistente.</li>
+<li>Necesidad de VMI o vasopresor.</li>
+<li>NEWS2 ≥7 o SOFA con incremento ≥2.</li>
+</ul>
+</div>
+<div>
+<h3>Consideraciones complementarias</h3>
+<ul>
+<li><strong>Reversibilidad:</strong> ¿la condición tiene tratamiento efectivo?</li>
+<li><strong>Voluntades anticipadas:</strong> ¿el paciente quiere medidas extraordinarias?</li>
+<li><strong>Recursos:</strong> disponibilidad de cama y equipo competente.</li>
+<li><strong>Tiempo crítico:</strong> ventana terapéutica abierta.</li>
+<li><strong>Decisión compartida:</strong> familia, paciente, equipo, ética cuando corresponda.</li>
+</ul>
+</div>
+</div>
+
+<div class="evidencia">
+<div class="evidencia-titulo">Referencia</div>
+Nates JL, et al. <em>ICU Admission, Discharge, and Triage Guidelines: A Framework to Enhance Clinical Operations</em>. Crit Care Med. 2016;44(8):1553-1602 (SCCM, vigente con actualización 2024).
+</div>
+<div class="slide-footer">Clase 1 · Módulo I</div>
+<div class="slide-number">28 / 40</div>
+</div>
+
+<!-- DIAPOSITIVA 29: REFERENCIA INTERHOSPITALARIA -->
+<div class="slide">
+<h1>Referencia Interhospitalaria del Paciente Crítico</h1>
+<h2>El traslado seguro: una intervención clínica, no logística</h2>
+<p>El traslado interhospitalario es una <strong>fase de alto riesgo</strong> en la cual el paciente puede deteriorarse fuera del entorno de soporte. La planificación rigurosa reduce eventos adversos del 30% al 10-15%.</p>
+
+<h3>Las 5 "P" del traslado seguro</h3>
+<div class="three-col">
+<div class="box"><strong>1. Paciente:</strong> estabilización máxima posible antes de salir; vía aérea segura, accesos funcionales, sondas (NG, vesical), ventilación adaptada al ventilador de transporte.</div>
+<div class="box"><strong>2. Personal:</strong> al menos un médico o enfermero entrenado en cuidado crítico para pacientes prioridad 1-2; competencia en vía aérea avanzada y reanimación.</div>
+<div class="box"><strong>3. Plan:</strong> ruta primaria y alternativa, hospital aceptante confirmado, comunicación al equipo receptor (técnica SBAR).</div>
+<div class="box"><strong>4. Provisiones:</strong> oxígeno suficiente (calcular con margen del 30%), medicación de emergencia (vasopresores, sedación, paralizantes, antiarrítmicos), insumos de vía aérea redundantes.</div>
+<div class="box"><strong>5. Protección:</strong> documentación completa, consentimiento, cinturones, monitorización continua (ECG, SpO₂, capnografía, PANI o invasiva).</div>
+<div class="box"><strong>Modos:</strong> terrestre (estándar), aéreo rotor (&lt;200-300 km, urgencia mayor), aéreo fijo (&gt;300 km, internacional). Considerar altitud (expansión gases, hipoxemia).</div>
+</div>
+
+<div class="box-critico">
+<strong>Errores fatales evitables:</strong> intubación durante el traslado (debe hacerse antes), oxígeno insuficiente, ventilador mal programado, ausencia de capnografía, falta de medicación vasopresora preparada, comunicación deficiente con hospital receptor.
+</div>
+
+<div class="evidencia">
+<div class="evidencia-titulo">Evidencia</div>
+Warren J, et al. <em>Guidelines for the inter- and intrahospital transport of critically ill patients</em>. Crit Care Med (SCCM/AACN). Actualización 2024; ICS UK Transfer Guidelines 2019.
+</div>
+<div class="slide-footer">Clase 1 · Módulo I</div>
+<div class="slide-number">29 / 40</div>
+</div>
+
+<!-- DIAPOSITIVA 30: RRT/MET -->
+<div class="slide">
+<h1>Equipos de Respuesta Rápida (RRT/MET)</h1>
+<h2>El sistema de seguridad fisiológica del hospital</h2>
+<p>Los <strong>Rapid Response Teams</strong> (RRT) o <strong>Medical Emergency Teams</strong> (MET) son equipos multidisciplinarios entrenados en cuidado crítico que acuden a la cabecera del paciente que se deteriora fuera de UCI, ante la activación por criterios objetivos preestablecidos.</p>
+
+<h3>Criterios típicos de activación</h3>
+<div class="two-col">
+<div>
+<h4>Fisiológicos (cualquiera)</h4>
+<ul>
+<li>FR &lt;8 o &gt;28 rpm.</li>
+<li>SpO₂ &lt;90% con O₂ suplementario.</li>
+<li>PAS &lt;90 mmHg.</li>
+<li>FC &lt;40 o &gt;130 lpm.</li>
+<li>Cambio agudo del estado mental.</li>
+<li>Diuresis &lt;50 mL en 4 h.</li>
+<li>Convulsión inesperada.</li>
+<li>NEWS2 ≥7.</li>
+</ul>
+</div>
+<div>
+<h4>Subjetivos / clínicos</h4>
+<ul>
+<li><strong>"Worried call":</strong> preocupación clínica del personal asistencial (criterio universal).</li>
+<li>Activación a solicitud del paciente o familia (modelo Condition H).</li>
+<li>Dolor torácico nuevo no controlado.</li>
+<li>Sangrado activo significativo.</li>
+<li>Signos clínicos de mala perfusión (moteado, palidez extrema).</li>
+</ul>
+</div>
+</div>
+
+<div class="box-perla">
+La <strong>"worried call"</strong> es uno de los predictores más potentes de deterioro: la intuición clínica entrenada detecta cambios que las cifras no capturan. Empoderar al personal de enfermería y a las familias para activar el RRT salva vidas.
+</div>
+
+<div class="evidencia">
+<div class="evidencia-titulo">Evidencia</div>
+SCCM. <em>Guidelines on Recognizing and Responding to Clinical Deterioration Outside the ICU</em> (2024) — recomendación FUERTE para implementación de RRT/MET. Maharaj R, et al. <em>Rapid response systems: a systematic review and meta-analysis</em>. Crit Care. 2015;19:254 — reducción de mortalidad hospitalaria 17% y de paros CR 38%.
+</div>
+<div class="slide-footer">Clase 1 · Módulo I</div>
+<div class="slide-number">30 / 40</div>
+</div>
+
+<!-- DIAPOSITIVA 31: COMUNICACIÓN SBAR -->
+<div class="slide">
+<h1>Comunicación Estructurada: SBAR</h1>
+<h2>El lenguaje seguro de la transferencia clínica</h2>
+<p>La comunicación deficiente está implicada en el <strong>60-70% de los eventos centinela</strong> hospitalarios (Joint Commission). El método <strong>SBAR</strong> estandariza la transferencia de información clínica crítica entre profesionales.</p>
+
+<table>
+<tr><th>Componente</th><th>Contenido</th><th>Ejemplo</th></tr>
+<tr><td><strong>S</strong> — Situation</td><td>Identificación, motivo de la llamada, situación actual</td><td>"Soy el Dr. X de medicina interna. Llamo por el paciente Pérez, cama 305, 68 años, con descompensación respiratoria aguda."</td></tr>
+<tr><td><strong>B</strong> — Background</td><td>Contexto clínico relevante</td><td>"Ingresó hace 24 h por neumonía adquirida en comunidad. EPOC GOLD III, exfumador, sin alergias."</td></tr>
+<tr><td><strong>A</strong> — Assessment</td><td>Evaluación clínica actual: signos vitales, ABCDE, hallazgos</td><td>"FR 32, SpO₂ 84% con FiO₂ 0,5; PA 92/55; FC 128; lactato 3,8; Glasgow 13. Cumple criterios de NEWS2 = 11. Hay infiltrados nuevos bilaterales en Rx."</td></tr>
+<tr><td><strong>R</strong> — Recommendation</td><td>Solicitud específica y plan propuesto</td><td>"Solicito valoración por UCI, considero indicación de VNI o intubación. ¿Puede acudir en los próximos 10 minutos?"</td></tr>
+</table>
+
+<div class="box-perla">
+SBAR debe ser <strong>bidireccional con confirmación</strong>: el receptor repite los puntos clave (closed-loop). Las órdenes verbales deben repetirse y registrarse en HCE en tiempo real.
+</div>
+
+<div class="evidencia">
+<div class="evidencia-titulo">Evidencia</div>
+Müller M, et al. <em>Impact of the communication and patient hand-off tool SBAR on patient safety</em>. BMJ Open. 2018;8:e022202 — reducción significativa de errores de comunicación y eventos adversos.
+</div>
+<div class="slide-footer">Clase 1 · Módulo I</div>
+<div class="slide-number">31 / 40</div>
+</div>
+
+<!-- DIAPOSITIVA 32: HUMAN FACTORS -->
+<div class="slide">
+<h1>Factores Humanos y Trabajo en Equipo</h1>
+<h2>La medicina crítica es un deporte de equipo</h2>
+<p>El desempeño clínico en situaciones críticas depende tanto de las competencias técnicas como de los <strong>factores no técnicos</strong> (non-technical skills): liderazgo, conciencia situacional, toma de decisiones, comunicación y gestión del estrés.</p>
+
+<div class="two-col">
+<div>
+<h3>Roles esenciales en el equipo de reanimación</h3>
+<ul>
+<li><strong>Líder (team leader):</strong> coordina, no toca al paciente; visión global; toma decisiones; se ubica a los pies de la cama.</li>
+<li><strong>Vía aérea:</strong> manejo A y B.</li>
+<li><strong>Acceso/medicación:</strong> dos miembros para circulación.</li>
+<li><strong>Compresiones / procedimientos.</strong></li>
+<li><strong>Registro:</strong> documenta tiempos, dosis, intervenciones.</li>
+<li><strong>Familia:</strong> acompañante para comunicación con familia (cuando aplique).</li>
+</ul>
+<p><strong>Tamaño óptimo: 5-7 miembros</strong> (Maluso 2016).</p>
+</div>
+<div>
+<h3>Conducta del líder eficaz</h3>
+<ul>
+<li>Anuncia su rol al inicio.</li>
+<li>Habla en voz audible y calmada.</li>
+<li>Asigna tareas con nombre + acción + plazo.</li>
+<li>Solicita confirmación (closed-loop).</li>
+<li>Resume la situación en voz alta cada 5-10 min ("10 for 10").</li>
+<li>Solicita activamente diagnósticos diferenciales al equipo.</li>
+<li>Prepara escenarios futuros ("si no responde, plan B es...").</li>
+<li>Reconoce errores y los corrige sin culpabilizar.</li>
+</ul>
+</div>
+</div>
+
+<div class="box-alerta">
+<strong>Sesgos cognitivos frecuentes</strong> en escenarios críticos: anclaje (apego al primer diagnóstico), confirmación (buscar solo datos que apoyen la hipótesis), disponibilidad (sobrediagnosticar lo recientemente visto), túnel atencional (perder visión global). El líder y la reevaluación ABCDE son las mejores defensas.
+</div>
+
+<div class="evidencia">
+<div class="evidencia-titulo">Evidencia</div>
+Flin R, et al. <em>Anaesthetists' Non-Technical Skills (ANTS)</em>. Br J Anaesth. 2010;105(1):38-44. Hicks CM, Petrosoniak A. <em>The Human Factor: Optimizing Trauma Team Performance</em>. Emerg Med Clin North Am. 2018;36(1):1-17.
+</div>
+<div class="slide-footer">Clase 1 · Módulo I</div>
+<div class="slide-number">32 / 40</div>
+</div>
+
+<!-- DIAPOSITIVA 33: CASO CLÍNICO 1 -->
+<div class="slide">
+<h1>Caso Clínico Integrador 1</h1>
+<h2>Aplicación del ABCDE en escenario real</h2>
+<div class="box">
+<strong>Paciente:</strong> Mujer, 67 años, ingresa a urgencias por <em>fiebre, disnea y confusión</em> de 36 horas de evolución. Antecedentes: DM2, HTA, EPOC GOLD II.<br><br>
+<strong>Triage (ESI):</strong> Nivel 2.<br>
+<strong>Signos vitales iniciales:</strong> FR 30, SpO₂ 86% (aire ambiente), PA 88/52, FC 122, T 38,9°C, glucemia 220 mg/dL, Glasgow 13 (E3 V4 M6).
+</div>
+
+<h3>Discusión guiada — aplique el ABCDE</h3>
+<div class="abcde-grid">
+<div class="letra A">A</div>
+<div class="contenido-letra"><strong>Acción:</strong> Verbaliza espontáneamente (vía aérea permeable). No estridor. Continúa monitorizando.</div>
+</div>
+<div class="abcde-grid">
+<div class="letra B">B</div>
+<div class="contenido-letra"><strong>Hallazgos:</strong> Crepitantes en base derecha. <strong>Acción:</strong> O₂ a 15 L/min con reservorio → SpO₂ 92%. Gasometría: pH 7,28, PaO₂ 58, PaCO₂ 32, HCO₃ 16, lactato 4,2.</div>
+</div>
+<div class="abcde-grid">
+<div class="letra C">C</div>
+<div class="contenido-letra"><strong>Hallazgos:</strong> Llenado capilar 4 s, moteado en rodillas, yugulares planas. <strong>Acción:</strong> 2 vías 16G, hemocultivos × 2, cristaloide balanceado 1.500 mL en 30 min. Bundle de sepsis: ceftriaxona 2 g + azitromicina 500 mg IV. Reevaluación: PA 95/58, lactato 3,5 a los 60 min.</div>
+</div>
+<div class="abcde-grid">
+<div class="letra D">D</div>
+<div class="contenido-letra"><strong>Hallazgos:</strong> Glasgow mejora a 14 tras fluidos. Pupilas isocóricas reactivas. Glucemia 220 (no hipoglucemia). <strong>Acción:</strong> control horario.</div>
+</div>
+<div class="abcde-grid">
+<div class="letra E">E</div>
+<div class="contenido-letra"><strong>Hallazgos:</strong> No lesiones cutáneas. Tamb. central 39,2°C. <strong>Acción:</strong> antipirético, manta normotérmica.</div>
+</div>
+
+<div class="box-perla">
+<strong>NEWS2 calculado:</strong> FR 30 (3) + SpO₂ aire (3) + O₂ suplementario (2) + PAS 88 (3) + FC 122 (2) + alteración (3) + T 38,9 (1) = <strong>17 puntos</strong> → activación inmediata RRT, evaluación UCI. Sepsis severa por neumonía. Diagnóstico de salida: shock séptico, prioridad 1 para UCI.
+</div>
+<div class="slide-footer">Clase 1 · Módulo I</div>
+<div class="slide-number">33 / 40</div>
+</div>
+
+<!-- DIAPOSITIVA 34: CASO CLÍNICO 2 -->
+<div class="slide">
+<h1>Caso Clínico Integrador 2</h1>
+<h2>Reconocimiento del fenotipo de shock</h2>
+<div class="box">
+<strong>Paciente:</strong> Hombre, 58 años, traído por dolor torácico opresivo retroesternal de 90 minutos, irradiado a brazo izquierdo, diaforesis profusa. Antecedentes: tabaquismo 40 paq/año, dislipidemia, HTA.<br><br>
+<strong>Triage (MTS):</strong> Naranja (dolor torácico cardíaco probable).<br>
+<strong>Signos vitales:</strong> PA 86/55, FC 48 (bradicardia), FR 22, SpO₂ 91%, Glasgow 15.<br>
+<strong>ECG (5 min):</strong> elevación ST de 4 mm en DII, DIII, aVF; descenso recíproco en aVL.
+</div>
+
+<h3>Reflexión clínica</h3>
+<ol>
+<li><strong>Categorización ESI/MTS:</strong> nivel 2 / naranja inmediato.</li>
+<li><strong>Diagnóstico:</strong> SCACEST inferior con bradicardia y posible compromiso de VD (PA baja + bradicardia + IAM inferior = sospecha de extensión a VD).</li>
+<li><strong>Trampa terapéutica:</strong> los nitratos en IAM de VD pueden colapsar la precarga y precipitar shock. <strong>Contraindicados</strong> sin haber asegurado precarga.</li>
+<li><strong>POCUS hallazgo:</strong> VD dilatado e hipocontráctil; VI conservado; VCI dilatada no colapsable.</li>
+<li><strong>Acción:</strong>
+<ul>
+<li>Cristaloide 500 mL en 15 min (precarga).</li>
+<li>Doble antiagregación + anticoagulación según protocolo.</li>
+<li>Atropina 0,5 mg IV si bradicardia sintomática persistente.</li>
+<li>Activación de hemodinamia para angioplastia primaria (puerta-balón &lt;90 min).</li>
+<li>Si shock cardiogénico establecido: noradrenalina + dobutamina, considerar soporte mecánico.</li>
+</ul>
+</li>
+</ol>
+
+<div class="box-critico">
+<strong>Lección clave:</strong> el ABCDE detectó la inestabilidad C antes que el ECG diera el diagnóstico. La interpretación integrada (clínica + ECG + POCUS) cambia la estrategia terapéutica: este paciente NO recibe nitratos ni morfina hasta estabilizar precarga.
+</div>
+<div class="slide-footer">Clase 1 · Módulo I</div>
+<div class="slide-number">34 / 40</div>
+</div>
+
+<!-- DIAPOSITIVA 35: CONTROVERSIAS -->
+<div class="slide">
+<h1>Controversias y Áreas de Incertidumbre</h1>
+<h2>Lo que la evidencia aún no resuelve</h2>
+
+<div class="box">
+<h3>1. Volumen del bolo inicial en sepsis: ¿30 mL/kg para todos?</h3>
+<p>El estudio <strong>CLASSIC</strong> (NEJM 2022) y <strong>CLOVERS</strong> (NEJM 2023) sugieren que estrategias restrictivas de fluidos con uso temprano de vasopresores no son inferiores —y posiblemente superiores— a la estrategia liberal en pacientes con shock séptico ya hipotenso. SSC 2026 mantiene la recomendación condicional de 30 mL/kg, pero con énfasis en <strong>individualización</strong> según respuesta y comorbilidades (insuficiencia cardiaca, ERC).</p>
+</div>
+
+<div class="box">
+<h3>2. Lactato vs. perfusión periférica como meta</h3>
+<p>ANDROMEDA-SHOCK favoreció el llenado capilar; estudios posteriores muestran resultados mixtos. La tendencia actual es <strong>uso combinado</strong>, con énfasis en la respuesta clínica más que en un único biomarcador.</p>
+</div>
+
+<div class="box">
+<h3>3. POCUS rutinario en evaluación inicial</h3>
+<p>SSC 2026 da recomendación condicional a favor; sin embargo, requiere infraestructura, entrenamiento y acreditación. La evidencia de impacto en mortalidad sigue siendo heterogénea (PMC12872035, 2025), aunque la utilidad diagnóstica es robusta.</p>
+</div>
+
+<div class="box">
+<h3>4. NEWS2 vs. modelos de IA / aprendizaje automático</h3>
+<p>Modelos de machine learning (eCART, EPIC Deterioration Index) muestran AUC superiores (0,86-0,92) a NEWS2 en cohortes amplias. Su implementación generalizada está limitada por validación externa, sesgos de equidad y dependencia de HCE robustas.</p>
+</div>
+
+<div class="box-alerta">
+La práctica del médico experto requiere reconocer la <strong>incertidumbre legítima</strong>: aplicar las guías como punto de partida, individualizar según el paciente y mantener vigilancia activa. Las guías son consensos, no dogmas.
+</div>
+<div class="slide-footer">Clase 1 · Módulo I</div>
+<div class="slide-number">35 / 40</div>
+</div>
+
+<!-- DIAPOSITIVA 36: CONSIDERACIONES ÉTICAS -->
+<div class="slide">
+<h1>Consideraciones Éticas en la Atención del Paciente Crítico</h1>
+<h2>El triage como decisión moral</h2>
+<p>Cada decisión de priorización, ingreso a UCI o limitación del esfuerzo terapéutico tiene una dimensión ética que el médico debe reconocer y abordar explícitamente.</p>
+
+<h3>Principios bioéticos aplicados</h3>
+<table>
+<tr><th>Principio</th><th>Aplicación en el paciente crítico</th></tr>
+<tr><td><strong>Autonomía</strong></td><td>Respeto a voluntades anticipadas, consentimiento informado para intervenciones (intubación, RCP). Decisión compartida cuando el paciente es competente.</td></tr>
+<tr><td><strong>Beneficencia</strong></td><td>Maximizar beneficio: aplicar la intervención correcta en el momento correcto. Reconocer cuándo intervenir y cuándo no.</td></tr>
+<tr><td><strong>No maleficencia</strong></td><td>Evitar la <em>obstinación terapéutica</em>: intervenciones que prolongan la muerte sin beneficio. Reconocer la futilidad.</td></tr>
+<tr><td><strong>Justicia</strong></td><td>Distribución equitativa de recursos limitados (camas UCI, ventiladores). Triage como expresión de justicia distributiva.</td></tr>
+</table>
+
+<h3>Limitación del esfuerzo terapéutico (LET)</h3>
+<div class="box">
+<ul>
+<li><strong>No es abandono:</strong> es adecuación del cuidado a las metas terapéuticas realistas.</li>
+<li>Decisión basada en evidencia clínica + valores del paciente + consenso del equipo.</li>
+<li>Documentación detallada en HCE.</li>
+<li>Cuidados de confort siempre garantizados (control de dolor, disnea, agitación).</li>
+<li>Comunicación con familia: empática, clara, sin tecnicismos, en privacidad.</li>
+</ul>
+</div>
+
+<div class="box-perla">
+La habilidad de <strong>"prognosticar con humildad"</strong> es una competencia avanzada del internista. Decir "no sabemos con certeza, pero los datos sugieren..." es más honesto y útil que falsas certezas en cualquier dirección.
+</div>
+<div class="slide-footer">Clase 1 · Módulo I</div>
+<div class="slide-number">36 / 40</div>
+</div>
+
+<!-- DIAPOSITIVA 37: CHECKLIST FINAL -->
+<div class="slide">
+<h1>Checklist de los Primeros 60 Minutos</h1>
+<h2>Síntesis operativa para llevarse a la práctica</h2>
+<div class="two-col">
+<div>
+<h3>Primeros 0-5 minutos</h3>
+<ul>
+<li>☐ Triage estructurado (ESI/MTS).</li>
+<li>☐ Activación de equipo (RRT si NEWS2 ≥7).</li>
+<li>☐ Monitorización completa (ECG, SpO₂, PANI).</li>
+<li>☐ Acceso venoso periférico × 2 (16G).</li>
+<li>☐ Glucemia capilar.</li>
+<li>☐ Inicio del ABCDE con líder identificado.</li>
+</ul>
+
+<h3>Minutos 5-20</h3>
+<ul>
+<li>☐ ABCDE completo con intervenciones simultáneas.</li>
+<li>☐ Gasometría arterial / venosa con lactato.</li>
+<li>☐ Laboratorio inicial (HC, química, troponina, coagulación, hemocultivos si fiebre).</li>
+<li>☐ ECG &lt;10 min en dolor torácico.</li>
+<li>☐ Rx tórax portátil.</li>
+<li>☐ POCUS dirigido (RUSH/BLUE).</li>
+</ul>
+</div>
+<div>
+<h3>Minutos 20-60</h3>
+<ul>
+<li>☐ Primera reevaluación ABCDE completa.</li>
+<li>☐ Antibiótico si sepsis (≤1 h).</li>
+<li>☐ Cristaloide balanceado dirigido (250-500 mL bolos).</li>
+<li>☐ Vasopresor si PAM &lt;65 tras 30 mL/kg.</li>
+<li>☐ Imagen avanzada si indicada (TC).</li>
+<li>☐ Decisión de disposición (UCI vs. piso vs. referencia).</li>
+<li>☐ Comunicación SBAR con servicio receptor.</li>
+<li>☐ Información clara a familia.</li>
+<li>☐ Documentación completa en HCE.</li>
+</ul>
+
+<h3>Reevaluación cíclica continua</h3>
+<ul>
+<li>☐ Cada intervención → nuevo ABCDE.</li>
+<li>☐ Lactato seriado (2-6 h).</li>
+<li>☐ NEWS2 / SOFA evolutivo.</li>
+<li>☐ Reconsiderar diagnóstico si no hay respuesta esperada.</li>
+</ul>
+</div>
+</div>
+
+<div class="box-perla">
+"En medicina crítica, el reloj corre desde el primer contacto. Cada minuto importa, pero ningún minuto importa más que la <strong>reevaluación</strong>."
+</div>
+<div class="slide-footer">Clase 1 · Módulo I</div>
+<div class="slide-number">37 / 40</div>
+</div>
+
+<!-- DIAPOSITIVA 38: MENSAJES CLAVE -->
+<div class="slide">
+<h1>Mensajes Clave (Take-Home Messages)</h1>
+<h2>Lo que debe quedar grabado al cierre de esta sesión</h2>
+<ol style="font-size:16px;">
+<li style="margin-bottom:14px;"><strong>El paciente crítico se reconoce, no se diagnostica.</strong> La detección temprana se basa en tendencias fisiológicas, no en cifras aisladas. La frecuencia respiratoria es el predictor más sensible y subutilizado.</li>
+
+<li style="margin-bottom:14px;"><strong>El ABCDE es un lenguaje universal y un proceso cíclico.</strong> "Treat first what kills first". Su aplicación correcta requiere entrenamiento, líder identificado, comunicación cerrada y reevaluación tras cada intervención.</li>
+
+<li style="margin-bottom:14px;"><strong>NEWS2 es la herramienta de tamizaje hospitalario recomendada</strong>; qSOFA es complementaria, no de cribado primario; SOFA define disfunción orgánica en sospecha de sepsis.</li>
+
+<li style="margin-bottom:14px;"><strong>El triage es una decisión clínica de alto impacto.</strong> Sistemas validados (ESI, MTS) y triage avanzado con protocolos institucionales reducen tiempos a la intervención sin comprometer seguridad.</li>
+
+<li style="margin-bottom:14px;"><strong>El shock se diagnostica por perfusión, no por presión.</strong> Identifique el fenotipo precozmente (hipovolémico, distributivo, cardiogénico, obstructivo) — POCUS es una herramienta de creciente valor.</li>
+
+<li style="margin-bottom:14px;"><strong>El bundle de 1 hora en sepsis salva vidas:</strong> lactato, hemocultivos, antibiótico, cristaloide y vasopresor. Cada hora de demora aumenta mortalidad 4-7%.</li>
+
+<li style="margin-bottom:14px;"><strong>La decisión de admisión a UCI integra criterios fisiológicos, reversibilidad y voluntades anticipadas.</strong> El traslado interhospitalario es una intervención clínica, no logística.</li>
+
+<li style="margin-bottom:14px;"><strong>Los factores no técnicos son tan importantes como los técnicos.</strong> Liderazgo, conciencia situacional, comunicación SBAR y trabajo en equipo determinan el desenlace tanto como los fármacos.</li>
+
+<li style="margin-bottom:14px;"><strong>La medicina crítica avanzada es ética aplicada en tiempo real.</strong> Reconocer la incertidumbre, comunicarla y compartir decisiones es signo del experto.</li>
+</ol>
+<div class="slide-footer">Clase 1 · Módulo I</div>
+<div class="slide-number">38 / 40</div>
+</div>
+
+<!-- DIAPOSITIVA 39: REFERENCIAS -->
+<div class="slide">
+<h1>Referencias Bibliográficas</h1>
+<h2>Evidencia de alto impacto · PubMed / Scopus / WOS / EMBASE / Guías de práctica clínica</h2>
+<div style="font-size:13px;line-height:1.5;">
+<h3>Guías de práctica clínica</h3>
+<ol>
+<li>Surviving Sepsis Campaign Committee. <strong>International Guidelines for Management of Sepsis and Septic Shock 2026</strong>. SCCM/ESICM. Crit Care Med. 2026.</li>
+<li>SCCM. <strong>Guidelines on Recognizing and Responding to Clinical Deterioration Outside the ICU</strong>. Crit Care Med. 2024.</li>
+<li>Resuscitation Council UK. <strong>The ABCDE Approach</strong>. 2024 update.</li>
+<li>American Heart Association. <strong>Guidelines for CPR and Emergency Cardiovascular Care</strong>. Circulation. 2025.</li>
+<li>Royal College of Physicians. <strong>National Early Warning Score (NEWS) 2</strong>. RCP, London. 2017 (vigente 2024).</li>
+<li>AHRQ/ENA. <strong>Emergency Severity Index Handbook, 5th edition</strong>. 2023.</li>
+<li>Mackway-Jones K. <strong>Emergency Triage: Manchester Triage Group</strong>. 3rd ed. Wiley-Blackwell. 2014.</li>
+<li>Nates JL, et al. <strong>ICU Admission, Discharge, and Triage Guidelines</strong>. Crit Care Med. 2016;44(8):1553-1602.</li>
+</ol>
+
+<h3>Artículos seminales y de alto impacto</h3>
+<ol start="9">
+<li>Singer M, et al. <strong>The Third International Consensus Definitions for Sepsis and Septic Shock (Sepsis-3)</strong>. JAMA. 2016;315(8):801-810.</li>
+<li>Bergs L, et al. <strong>The ABCDE approach in critically ill patients: A scoping review</strong>. Resuscitation Plus. 2024;19:100754.</li>
+<li>Marincowitz C, et al. <strong>Validation of MEWS, NEWS, NEWS-2 and qSOFA</strong>. Sci Rep. 2024;14:24545.</li>
+<li>Seymour CW, et al. <strong>Time to Treatment and Mortality during Mandated Emergency Care for Sepsis</strong>. NEJM. 2017;376(23):2235-2244.</li>
+<li>Hernández G, et al. <strong>Effect of a Resuscitation Strategy Targeting Peripheral Perfusion Status vs Serum Lactate Levels on 28-Day Mortality (ANDROMEDA-SHOCK)</strong>. JAMA. 2019;321(7):654-664.</li>
+<li>Meyhoff TS, et al. <strong>Restriction of Intravenous Fluid in ICU Patients with Septic Shock (CLASSIC)</strong>. NEJM. 2022;386:2459-2470.</li>
+<li>Shapiro NI, et al. <strong>Early Restrictive or Liberal Fluid Management for Sepsis-Induced Hypotension (CLOVERS)</strong>. NEJM. 2023;388:499-510.</li>
+<li>De Backer D, et al. <strong>Comparison of Dopamine and Norepinephrine in the Treatment of Shock</strong>. NEJM. 2010;362:779-789.</li>
+<li>Permpikul C, et al. <strong>Early Use of Norepinephrine in Septic Shock Resuscitation (CENSER)</strong>. Am J Respir Crit Care Med. 2019;199(9):1097-1105.</li>
+<li>Rudd KE, et al. <strong>Global, regional, and national sepsis incidence and mortality</strong>. Lancet. 2020;395(10219):200-211.</li>
+<li>Atkinson PR, et al. <strong>Impact of POCUS-Guided Resuscitation: Systematic Review and Meta-analysis</strong>. 2025; PMC12872035.</li>
+<li>Saban M, et al. <strong>Implementation of advanced triage in the ED of a high-complexity hospital</strong>. Nurs Open. 2023;10:5089-5101.</li>
+<li>Cabilan CJ, Boyde M. <strong>Advanced triage protocols in the emergency department: a systematic review</strong>. JBI Evid Synth. 2017.</li>
+<li>Maluso P, et al. <strong>Trauma team size and task performance</strong>. J Trauma Acute Care Surg. 2016;81(5):961-965.</li>
+<li>Müller M, et al. <strong>Impact of SBAR on patient safety</strong>. BMJ Open. 2018;8:e022202.</li>
+<li>Maharaj R, et al. <strong>Rapid response systems: systematic review and meta-analysis</strong>. Crit Care. 2015;19:254.</li>
+<li>Teasdale G, et al. <strong>The Glasgow Coma Scale at 40 years</strong>. Lancet Neurol. 2014;13(8):844-854.</li>
+</ol>
+</div>
+<div class="slide-footer">Clase 1 · Módulo I</div>
+<div class="slide-number">39 / 40</div>
+</div>
+
+<!-- DIAPOSITIVA 40: CIERRE -->
+<div class="slide cover">
+<div style="font-size:16px;letter-spacing:3px;color:var(--amarillo);margin-bottom:20px;">FIN DE LA CLASE 1</div>
+<h1 style="font-size:38px;">Gracias por su atención</h1>
+<div class="subtitle" style="margin-top:20px;">"En el paciente crítico, la primera hora define el resto del ingreso.<br>El médico bien entrenado convierte esa hora en oportunidad."</div>
+
+<div class="meta" style="margin-top:30px;">
+<strong>Próxima sesión — Clase 2:</strong><br>
+Shock séptico, hipovolémico y cardiogénico<br>
+Reconocimiento temprano · Fenotipos · Reanimación · Vasopresores · Metas clínicas<br>
+<strong>Jueves 07/05/2026 · 20:00 — 22:00 (UTC-5)</strong>
+</div>
+
+<div style="margin-top:40px;font-size:14px;color:var(--celeste-claro);">
+<strong>Tareas asignadas:</strong><br>
+• Lectura: SSC Guidelines 2026 (capítulos 1-3)<br>
+• Práctica: aplicar NEWS2 en 5 pacientes hospitalizados<br>
+• Caso clínico para discusión en Clase 2 (será compartido por la plataforma)
+</div>
+
+<div style="margin-top:40px;font-size:13px;color:var(--celeste-claro);font-style:italic;">
+Ph.D. Héctor Ortega C. · Docente principal<br>
+AVANTISCORP Capacitación Integral · Riobamba, Ecuador<br>
+avantiscorp2025@gmail.com · +593 96 414 5439
+</div>
+<div class="slide-number">40 / 40</div>
+</div>
+
+</body>
+</html>
+
